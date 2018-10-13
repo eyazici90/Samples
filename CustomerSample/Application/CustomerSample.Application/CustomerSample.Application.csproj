@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\Domain\CustomerSample.Domain\CustomerSample.Domain.csproj" />
+    <ProjectReference Include="..\CustomerSample.Application.Abstractions\CustomerSample.Application.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
