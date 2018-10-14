@@ -13,6 +13,7 @@ using CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate;
 using CustomerSample.Customer.Domain.EFRepositories.BrandAggregate;
 using CustomerSample.Domain.Events;
 using CustomerSample.Infrastructure;
+using Galaxy.Application;
 using Galaxy.Bootstrapping;
 using Galaxy.EntityFrameworkCore.Bootstrapper;
 using Galaxy.FluentValidation;
@@ -65,7 +66,7 @@ namespace CustomerSample.API.Host
                 })
             .AddControllersAsServices(); ;
            
-            var container = ConfigureAutofacModules(services);
+            var container = this.ConfigureGalaxy(services);
             
             return new AutofacServiceProvider(container);
         }
@@ -98,28 +99,27 @@ namespace CustomerSample.API.Host
             });
         }
 
-        private IContainer ConfigureAutofacModules(IServiceCollection services)
+        private IContainer ConfigureGalaxy(IServiceCollection services)
         {
 
             var containerBuilder = GalaxyMainBootsrapper.Create()
                  .RegisterContainerBuilder()
                      .UseGalaxyCore(b =>
                      {
-                         b.RegisterType<CustomerAppService>()
-                              .As<ICustomerAppService>()
-                               .AsImplementedInterfaces()
-                               .EnableInterfaceInterceptors()
-                               .InterceptedBy(typeof(ValidatorInterceptor))
-                               .InterceptedBy(typeof(UnitOfWorkInterceptor))
-                              .InstancePerLifetimeScope();
+                         b.UseConventinalCustomRepositories(typeof(BrandRepository).Assembly);
+                         b.UseConventinalPolicies(typeof(BrandPolicy).Assembly);
+                         b.UseConventinalDomainService(typeof(Brand).Assembly);
+                         //b.UseConventinalApplicationService(typeof(CustomerAppService).Assembly);
+                         b.UseConventinalDomainEvents(typeof(BrandNameChangedDomainEventHandler).Assembly);
 
-                         b.RegisterAssemblyTypes(typeof(BrandNameChangedDomainEventHandler).Assembly)
-                             .AsClosedTypesOf(typeof(INotificationHandler<>));
+                         b.RegisterAssemblyTypes(typeof(CustomerAppService).Assembly)
+                              .AssignableTo<IApplicationService>()
+                              .AsImplementedInterfaces()
+                              .EnableInterfaceInterceptors()
+                              .InterceptedBy(typeof(ValidatorInterceptor))
+                              .InterceptedBy(typeof(UnitOfWorkInterceptor))
+                              .InstancePerLifetimeScope();
                      })
-                     .UseConventinalCustomRepositories(typeof(BrandRepository).Assembly)
-                     .UseConventinalPolicies(typeof(BrandPolicy).Assembly)
-                     .UseConventinalDomainService(typeof(Brand).Assembly)
-                     .UseConventinalApplicationService(typeof(CustomerAppService).Assembly)
                      .UseGalaxyEntityFrameworkCore(
                                 new DbContextOptionsBuilder<CustomerSampleDbContext>()
                                      .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
