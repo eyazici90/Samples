@@ -35,6 +35,7 @@ namespace CustomerSample.Customer.Domain.EFRepositories.BrandAggregate
         }
         public async Task<Brand> GetAsync(int brandId)
         {
+          
             return await this._brandRep.FindAsync(brandId);
         }
 

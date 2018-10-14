@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerSample.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerSampleDbContext))]
-    [Migration("20181013155929_first_init")]
+    [Migration("20181014145912_first_init")]
     partial class first_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,9 +88,10 @@ namespace CustomerSample.Infrastructure.Migrations
 
             modelBuilder.Entity("CustomerSample.Customer.Domain.AggregatesModel.GroupAggregate.Group", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 

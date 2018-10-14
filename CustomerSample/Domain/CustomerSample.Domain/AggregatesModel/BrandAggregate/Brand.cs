@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
-    public sealed class Brand : Entity , IAggregateRoot // Marker Interface
+    public sealed class Brand : Entity , ISoftDelete, IAggregateRoot // Marker Interface
     {
         // [Required] Dont use DataAnnotations cuz it gives information about infrastructure. its not a good practise
         public  int Id { get; private set; }
@@ -25,6 +25,8 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
         private List<Merchant> _merchants;
 
         public IEnumerable<Merchant> Merchants => _merchants.AsEnumerable();
+
+         
 
         private Brand()
         {
@@ -45,23 +47,26 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
             return new Brand( email,  brandName,  gsm ,  snCode );
         }
 
-        public void ChangeBrandName(string brandName)
+        public Brand ChangeBrandName(string brandName)
         {
             if (string.IsNullOrWhiteSpace(brandName))
                 throw new ArgumentNullException(nameof(brandName));
 
             this.BrandName = brandName;
+            return this;
         }
 
         // It is not not named SetStatusId(int id). Aggregates methods must be domain conceptual ubiq language implementation !!!
-        public void ActivateBrand()
+        public Brand ActivateBrand()
         {
             this.IsActive = true;
+            return this;
         }
 
-        public void DeactivateBrand()
+        public Brand DeactivateBrand()
         {
             this.IsActive = false;
+            return this;
         }
 
         public void ChangeOrAddGsm(string gsm)

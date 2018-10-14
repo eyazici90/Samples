@@ -16,6 +16,7 @@ using Galaxy.EntityFrameworkCore.Bootstrapper;
 using Galaxy.FluentValidation;
 using Galaxy.FluentValidation.Bootstrapper;
 using Galaxy.Mapster.Bootstrapper;
+using Galaxy.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -98,7 +99,7 @@ namespace CustomerSample.API.Host
         private IContainer ConfigureAutofacModules(IServiceCollection services)
         {
 
-            var containerBuilder = new GalaxyMainBootsrapper()
+            var containerBuilder = GalaxyMainBootsrapper.Create()
                  .RegisterContainerBuilder()
                      .UseGalaxyCore(builder =>
                      {
@@ -107,18 +108,16 @@ namespace CustomerSample.API.Host
                                .AsImplementedInterfaces()
                                .EnableInterfaceInterceptors()
                                .InterceptedBy(typeof(ValidatorInterceptor))
+                               .InterceptedBy(typeof(UnitOfWorkInterceptor))
                               .InstancePerLifetimeScope();
-
-                         builder.RegisterType<BrandPolicy>()
-                          .As<IBrandPolicy>()
-                          .InstancePerLifetimeScope();
                      })
                      .UseConventinalCustomRepositories(typeof(BrandRepository).Assembly)
+                     .UseConventinalPolicies(typeof(BrandPolicy).Assembly)
                      .UseConventinalDomainService(typeof(Brand).Assembly)
                      .UseConventinalApplicationService(typeof(CustomerAppService).Assembly)
                      .UseGalaxyEntityFrameworkCore(
                                 new DbContextOptionsBuilder<CustomerSampleDbContext>()
-                                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
                      .UseGalaxyMapster()
                      .UseGalaxyFluentValidation(typeof(BrandValidation).Assembly);
 

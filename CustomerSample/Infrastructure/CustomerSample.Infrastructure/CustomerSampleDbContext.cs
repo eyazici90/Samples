@@ -30,11 +30,6 @@ namespace CustomerSample.Infrastructure
             modelBuilder.HasDefaultSchema(DEFAULT_SCHEMA);
            // modelBuilder.ApplyAllConfigurationsFromCurrentAssembly(typeof(BrandEntityTypeConfiguration).Assembly);
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new BrandEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new GroupEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new LimitEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new LimitTypeEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new MerchantEntityTypeConfiguration());
         }
      
     }

@@ -35,7 +35,7 @@ namespace CustomerSample.Application
             // Authorization for application should be in this layer or caching !!! Any infrastructure knowing things
             var brand = Brand.Create(brandDto.EMail, brandDto.BrandName, brandDto.Gsm, brandDto.SNCode);
             this._brandRepository.Add(brand);
-            return await this._unit.SaveChangesAsync();
+            return await Task.FromResult(1);
         }
 
         public async Task<BrandDto> GetBrandByIdAsync(int brandId)
@@ -53,29 +53,29 @@ namespace CustomerSample.Application
                 .SyncObjectState(ObjectState.Added);
 
             this._brandRepository.AddMerchantToBrand(brand);
-            return await this._unit.SaveChangesAsync();
+            return await Task.FromResult(1);
         }
 
         public async Task<int> ChangeBrandName(BrandDto brandDto)
         {
             var brand = await this._brandRepository.GetAsync(brandDto.Id);
-            brand.ChangeBrandName(brandDto.BrandName);
+            brand
+                .ChangeBrandName(brandDto.BrandName);
 
             // Should we really update repository if its ef we are using. because objects are already tracking ef 
-            // this._brandRepository.Update(brand);
-            return await this._unit.SaveChangesAsync();
+             this._brandRepository.Update(brand);
+            return await Task.FromResult(1);
         }
 
 
         public async Task<int> ChangeMerchantVknByBrand (MerchantDto merchant)
         {
             var brand = await this._brandRepository.GetBrandAggregate(merchant.BrandId);
-            
-            brand.ChangeOrAddVknToMerchant(merchant.Id, merchant.Vkn);
-
+            brand.ChangeOrAddVknToMerchant(merchant.Id, merchant.Vkn)
+                .SyncObjectState(ObjectState.Modified);
             // Should we really update repository if its ef we are using. because objects are already tracking ef 
-           // this._brandRepository.Update(brand);
-            return await this._unit.SaveChangesAsync();
+            // this._brandRepository.Update(brand);
+            return await Task.FromResult(1);
         }
     }
 }

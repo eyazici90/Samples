@@ -24,9 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.Mapster\Galaxy.Mapster.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Galaxy_github\Galaxy\Galaxy\Galaxy.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.Mapster\Galaxy.Mapster.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy\Galaxy.csproj" />
     <ProjectReference Include="..\..\Domain\CustomerSample.Domain\CustomerSample.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CustomerSample.EFRepositories\CustomerSample.EFRepositories.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CustomerSample.Infrastructure\CustomerSample.Infrastructure.csproj" />

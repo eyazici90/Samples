@@ -86,9 +86,10 @@ namespace CustomerSample.Infrastructure.Migrations
 
             modelBuilder.Entity("CustomerSample.Customer.Domain.AggregatesModel.GroupAggregate.Group", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 

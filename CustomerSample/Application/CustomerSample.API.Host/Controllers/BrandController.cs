@@ -19,16 +19,37 @@ namespace CustomerSample.API.Host.Controllers
             _customerAppServ = customerAppServ ?? throw new ArgumentNullException(nameof(customerAppServ));
         }
 
-        [Route("api/v1/Customer/Brand/{id}")]
+        [Route("api/Customer/Brands/{id}")]
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetBrandByIdAsync(int id) =>
-             Ok(await this._customerAppServ.GetBrandByIdAsync(id));
+                 Ok(await this._customerAppServ.GetBrandByIdAsync(id));
 
-        [Route("api/v1/Customer/Brand")]
+
+        [Route("api/Customer/Brand/ChangeName")]
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ChangeBrandName([FromBody] BrandDto request) =>
+           Ok(await this._customerAppServ.ChangeBrandName(request));
+
+        [Route("api/Customer/ChangeMerchantVknByBrand")]
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> ChangeMerchantVknByBrand([FromBody] MerchantDto request) =>
+           Ok(await this._customerAppServ.ChangeMerchantVknByBrand(request));
+
+
+        [Route("api/Customer/Brand")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Update([FromBody] BrandDto brand) =>
-          Ok(await this._customerAppServ.AddNewBrand(brand));
+        public async Task<IActionResult> AddNewBrand([FromBody] BrandDto request) =>
+            Ok(await this._customerAppServ.AddNewBrand(request));
+
+
+        [Route("api/Customer/Merchant")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> AddMerchantToBrand([FromBody] MerchantDto request) =>
+           Ok(await this._customerAppServ.AddMerchantToBrand(request));
     }
 }

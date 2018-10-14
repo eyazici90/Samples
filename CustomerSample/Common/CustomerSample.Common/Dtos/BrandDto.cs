@@ -1,9 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CustomerSample.Common.Dtos
 {
+  
    public class BrandDto
     {
         public int Id { get;  set; }

@@ -10,7 +10,8 @@ namespace CustomerSample.Application.Validators
     {
         public BrandValidation()
         {
-            RuleFor(t => t.BrandName).NotEmpty();
+            RuleFor(t => t.BrandName).NotEmpty().MinimumLength(3);
+            RuleFor(t => t.EMail).NotEmpty().MinimumLength(5);
         }
     }
 }
