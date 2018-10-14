@@ -1,5 +1,6 @@
 ﻿
 using CustomerSample.Customer.Domain.Exceptions;
+using CustomerSample.Domain.Events;
 using Galaxy.Domain;
 using Galaxy.Infrastructure;
 using System;
@@ -53,6 +54,7 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
                 throw new ArgumentNullException(nameof(brandName));
 
             this.BrandName = brandName;
+            AddDomainEvent(new BrandNameChangedDomainEvent(this));
             return this;
         }
 

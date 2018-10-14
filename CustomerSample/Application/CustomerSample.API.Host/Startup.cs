@@ -7,9 +7,11 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using CustomerSample.Application;
 using CustomerSample.Application.Abstractions;
+using CustomerSample.Application.DomainEventHandlers;
 using CustomerSample.Application.Validators;
 using CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate;
 using CustomerSample.Customer.Domain.EFRepositories.BrandAggregate;
+using CustomerSample.Domain.Events;
 using CustomerSample.Infrastructure;
 using Galaxy.Bootstrapping;
 using Galaxy.EntityFrameworkCore.Bootstrapper;
@@ -17,6 +19,7 @@ using Galaxy.FluentValidation;
 using Galaxy.FluentValidation.Bootstrapper;
 using Galaxy.Mapster.Bootstrapper;
 using Galaxy.UnitOfWork;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -62,10 +65,8 @@ namespace CustomerSample.API.Host
                 })
             .AddControllersAsServices(); ;
            
-
             var container = ConfigureAutofacModules(services);
-
-      
+            
             return new AutofacServiceProvider(container);
         }
 
@@ -102,15 +103,18 @@ namespace CustomerSample.API.Host
 
             var containerBuilder = GalaxyMainBootsrapper.Create()
                  .RegisterContainerBuilder()
-                     .UseGalaxyCore(builder =>
+                     .UseGalaxyCore(b =>
                      {
-                         builder.RegisterType<CustomerAppService>()
+                         b.RegisterType<CustomerAppService>()
                               .As<ICustomerAppService>()
                                .AsImplementedInterfaces()
                                .EnableInterfaceInterceptors()
                                .InterceptedBy(typeof(ValidatorInterceptor))
                                .InterceptedBy(typeof(UnitOfWorkInterceptor))
                               .InstancePerLifetimeScope();
+
+                         b.RegisterAssemblyTypes(typeof(BrandNameChangedDomainEventHandler).Assembly)
+                             .AsClosedTypesOf(typeof(INotificationHandler<>));
                      })
                      .UseConventinalCustomRepositories(typeof(BrandRepository).Assembly)
                      .UseConventinalPolicies(typeof(BrandPolicy).Assembly)
