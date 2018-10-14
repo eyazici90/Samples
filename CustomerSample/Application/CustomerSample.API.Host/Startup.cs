@@ -65,6 +65,7 @@ namespace CustomerSample.API.Host
 
             var container = ConfigureAutofacModules(services);
 
+      
             return new AutofacServiceProvider(container);
         }
 

@@ -52,5 +52,10 @@ namespace CustomerSample.Customer.Domain.EFRepositories.BrandAggregate
         {
             this._brandRep.Update(brand);
         }
+
+        public  IQueryable<Brand> GetAllBrands()
+        {
+            return  this._brandRep.QueryableNoTrack();
+        }
     }
 }

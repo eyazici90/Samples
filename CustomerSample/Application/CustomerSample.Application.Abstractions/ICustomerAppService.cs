@@ -1,17 +1,19 @@
 ﻿
 using CustomerSample.Common.Dtos;
 using Galaxy.UnitOfWork;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CustomerSample.Application.Abstractions
 {
     public interface ICustomerAppService 
     {
+        Task<IList<BrandDto>> GetAllBrandsAsync();
         Task<BrandDto> GetBrandByIdAsync(int brandId);
      //   [DisableUnitOfWork]
-        Task<int> AddNewBrand(BrandDto brandDto);
-        Task<int> AddMerchantToBrand(MerchantDto merchant);
-        Task<int> ChangeBrandName(BrandDto brandDto);
-        Task<int> ChangeMerchantVknByBrand(MerchantDto merchant);
+        Task AddNewBrand(BrandDto brandDto);
+        Task AddMerchantToBrand(MerchantDto merchant);
+        Task ChangeBrandName(BrandDto brandDto);
+        Task ChangeMerchantVknByBrand(MerchantDto merchant);
     }
 }

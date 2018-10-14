@@ -15,6 +15,8 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 
         void Update(Brand brand);
 
+        IQueryable<Brand> GetAllBrands();
+
         Task<Brand> GetBrandAggregate(int brandId);
 
         Task<Brand> GetAsync(int brandId);

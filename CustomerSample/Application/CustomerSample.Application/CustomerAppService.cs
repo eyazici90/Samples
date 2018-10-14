@@ -5,6 +5,7 @@ using CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate;
 using Galaxy.Infrastructure;
 using Galaxy.ObjectMapping;
 using Galaxy.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,13 +30,18 @@ namespace CustomerSample.Application
             this._unit = unit ?? throw new ArgumentNullException(nameof(unit));
             this._objectMapper = objectMapper ?? throw new ArgumentNullException(nameof(objectMapper));
         }
-        
-        public async Task<int> AddNewBrand(BrandDto brandDto)
+
+        public async Task<IList<BrandDto>> GetAllBrandsAsync()
+        {
+            return this._objectMapper.MapTo<IList<BrandDto>>(
+                    await this._brandRepository.GetAllBrands().ToListAsync()
+            );
+        }
+        public async Task AddNewBrand(BrandDto brandDto)
         {
             // Authorization for application should be in this layer or caching !!! Any infrastructure knowing things
             var brand = Brand.Create(brandDto.EMail, brandDto.BrandName, brandDto.Gsm, brandDto.SNCode);
             this._brandRepository.Add(brand);
-            return await Task.FromResult(1);
         }
 
         public async Task<BrandDto> GetBrandByIdAsync(int brandId)
@@ -45,18 +51,17 @@ namespace CustomerSample.Application
         }
 
 
-        public async Task<int> AddMerchantToBrand(MerchantDto merchant)
+        public async Task AddMerchantToBrand(MerchantDto merchant)
         {
             var brand = await this._brandRepository.GetAsync(merchant.BrandId);
             brand
                 .AddMerchant(merchant.Name, merchant.Surname, merchant.BrandId, merchant.LimitId, _brandPolicy, merchant.Gsm)
                 .SyncObjectState(ObjectState.Added);
 
-            this._brandRepository.AddMerchantToBrand(brand);
-            return await Task.FromResult(1);
+            this._brandRepository.Update(brand);
         }
 
-        public async Task<int> ChangeBrandName(BrandDto brandDto)
+        public async Task  ChangeBrandName(BrandDto brandDto)
         {
             var brand = await this._brandRepository.GetAsync(brandDto.Id);
             brand
@@ -64,18 +69,18 @@ namespace CustomerSample.Application
 
             // Should we really update repository if its ef we are using. because objects are already tracking ef 
              this._brandRepository.Update(brand);
-            return await Task.FromResult(1);
         }
 
 
-        public async Task<int> ChangeMerchantVknByBrand (MerchantDto merchant)
+        public async Task ChangeMerchantVknByBrand (MerchantDto merchant)
         {
             var brand = await this._brandRepository.GetBrandAggregate(merchant.BrandId);
             brand.ChangeOrAddVknToMerchant(merchant.Id, merchant.Vkn)
                 .SyncObjectState(ObjectState.Modified);
             // Should we really update repository if its ef we are using. because objects are already tracking ef 
             // this._brandRepository.Update(brand);
-            return await Task.FromResult(1);
         }
+
+      
     }
 }
