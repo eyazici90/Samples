@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy\Galaxy.csproj" />
     <ProjectReference Include="..\..\Common\CustomerSample.Common\CustomerSample.Common.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy\Galaxy.csproj" />
   </ItemGroup>
 
 </Project>

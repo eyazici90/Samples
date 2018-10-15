@@ -17,8 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
     <ProjectReference Include="..\..\Domain\CustomerSample.Domain\CustomerSample.Domain.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.Mapster\Galaxy.Mapster.csproj" />
     <ProjectReference Include="..\CustomerSample.Application.Abstractions\CustomerSample.Application.Abstractions.csproj" />
   </ItemGroup>
 

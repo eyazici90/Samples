@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Galaxy_github\Galaxy\Galaxy.EntityFrameworkCore\Galaxy.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\Domain\CustomerSample.Domain\CustomerSample.Domain.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.EntityFrameworkCore\Galaxy.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>
