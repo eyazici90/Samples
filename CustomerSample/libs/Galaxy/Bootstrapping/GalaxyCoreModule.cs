@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Galaxy.Bootstrapping
 {
-    public  class GalaxyMainBootsrapper : GalaxyBaseBootstrapper, IBootsrapper
+    public  class GalaxyCoreModule : GalaxyBaseBootstrapper, IBootsrapper
     {
         private static readonly object objlock = new object();
 
@@ -15,20 +15,18 @@ namespace Galaxy.Bootstrapping
         public static  ContainerBuilder SingleInstanceBuilder;
 
 
-        private GalaxyMainBootsrapper()
+        private GalaxyCoreModule()
         {
             SingleInstanceBuilder = SingleInstanceBuilder ?? base.RegisterContainerBuilder();
         }
 
-        public static GalaxyMainBootsrapper Create()
+        public static GalaxyCoreModule Create()
         {
             lock (objlock)
             {
-                return new GalaxyMainBootsrapper();
+                return new GalaxyCoreModule();
             }
         }
-
-    
-       
+      
     }
 }

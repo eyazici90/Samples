@@ -1,6 +1,7 @@
 ﻿
 using CustomerSample.Customer.Domain.Exceptions;
 using CustomerSample.Domain.Events;
+using Galaxy.Auditing;
 using Galaxy.Domain;
 using Galaxy.Infrastructure;
 using System;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
-    public sealed class Brand : Entity , ISoftDelete, IAggregateRoot // Marker Interface
+    public sealed class Brand : FullyAuditEntity , ISoftDelete, IAggregateRoot // Marker Interface
     {
         // [Required] Dont use DataAnnotations cuz it gives information about infrastructure. its not a good practise
         public  int Id { get; private set; }

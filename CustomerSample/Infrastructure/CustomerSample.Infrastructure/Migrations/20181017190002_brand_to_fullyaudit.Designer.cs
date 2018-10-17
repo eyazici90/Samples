@@ -4,14 +4,16 @@ using CustomerSample.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerSample.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerSampleDbContext))]
-    partial class CustomerSampleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181017190002_brand_to_fullyaudit")]
+    partial class brand_to_fullyaudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,6 +6,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using CustomerSample.API.Host.Filter;
+using CustomerSample.API.Host.Session;
 using CustomerSample.Application;
 using CustomerSample.Application.Abstractions;
 using CustomerSample.Application.DomainEventHandlers;
@@ -107,7 +108,7 @@ namespace CustomerSample.API.Host
         private IContainer ConfigureGalaxy(IServiceCollection services)
         {
 
-            var containerBuilder = GalaxyMainBootsrapper.Create()
+            var containerBuilder = GalaxyCoreModule.Create()
                  .RegisterContainerBuilder()
                      .UseGalaxyCore(b =>
                      {
@@ -127,7 +128,7 @@ namespace CustomerSample.API.Host
                      })
                      .UseGalaxyEntityFrameworkCore(
                                 new DbContextOptionsBuilder<CustomerSampleDbContext>()
-                                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),typeof(CustomerSampleAppSession))
                      .UseGalaxyMapster()
                      .UseGalaxyFluentValidation(typeof(BrandValidation).Assembly);
 
