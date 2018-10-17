@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Galaxy.Serialization
+namespace Galaxy.Application
 {
-    public interface IJsonSerializer
+    public interface IAsyncCrudAppService
     {
     }
 }

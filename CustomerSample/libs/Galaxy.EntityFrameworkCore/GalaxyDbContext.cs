@@ -18,7 +18,7 @@ using Galaxy.EntityFrameworkCore;
 
 namespace Galaxy.EFCore
 {
-    public class GalaxyDbContext: DbContext, IGalaxyContextAsync
+    public abstract class GalaxyDbContext: DbContext, IGalaxyContextAsync
     {
         #region Private Fields
         private readonly Guid _instanceId;

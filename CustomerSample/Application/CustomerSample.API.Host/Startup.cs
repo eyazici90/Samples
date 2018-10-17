@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
+using CustomerSample.API.Host.Filter;
 using CustomerSample.Application;
 using CustomerSample.Application.Abstractions;
 using CustomerSample.Application.DomainEventHandlers;
@@ -58,8 +59,12 @@ namespace CustomerSample.API.Host
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddOptions();
-            services.AddMvc()
-            .AddJsonOptions(options =>
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+            })
+             .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
