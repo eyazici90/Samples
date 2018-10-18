@@ -1,4 +1,5 @@
 ﻿
+using Galaxy.Application;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text;
 namespace CustomerSample.Common.Dtos
 {
   
-   public class BrandDto
+   public class BrandDto : IEntityDto<int>
     {
         public int Id { get;  set; }
         public string EMail { get;  set; }
@@ -16,7 +17,5 @@ namespace CustomerSample.Common.Dtos
         public bool IsActive { get;  set; }
 
         public IEnumerable<MerchantDto> Merchants { get; set; }
-
-
     }
 }
