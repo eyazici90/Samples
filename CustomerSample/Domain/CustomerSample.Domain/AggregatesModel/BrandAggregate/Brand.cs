@@ -12,24 +12,16 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
     public sealed class Brand : FullyAuditEntity , ISoftDelete, IAggregateRoot // Marker Interface
     {
-        // [Required] Dont use DataAnnotations cuz it gives information about infrastructure. its not a good practise
-        public  int Id { get; private set; }
         public  string EMail { get; private set; }
         public  string BrandName { get; private set; }
         public  string Gsm { get; private set; }
         public  string SNCode { get; private set; }
         public  bool IsActive { get; private set; }
-
-        // For Soft deleting processes if you dont want to hard delete an aggregate calling DeleteThisBrand()
-        public bool IsDeleted { get; private set; }
-
-        // Collection encapsulating AddMerchant() method is the only way for adding marchants
+        
         private List<Merchant> _merchants;
 
         public IEnumerable<Merchant> Merchants => _merchants.AsEnumerable();
-
-         
-
+        
         private Brand()
         {
             _merchants = new List<Merchant>();

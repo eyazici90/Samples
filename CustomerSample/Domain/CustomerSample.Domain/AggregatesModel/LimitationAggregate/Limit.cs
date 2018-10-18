@@ -4,7 +4,7 @@ using System;
 
 namespace CustomerSample.Domain.AggregatesModel.LimitationAggregate
 {
-    public class Limit : Entity , IAggregateRoot
+    public sealed class Limit : Entity , IAggregateRoot
     {
         
 

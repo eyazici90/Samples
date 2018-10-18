@@ -105,14 +105,15 @@ namespace CustomerSample.API.Host
         private IContainer ConfigureGalaxy(IServiceCollection services)
         {
 
-            var containerBuilder = GalaxyCoreModule.Create()
+            var containerBuilder = GalaxyCoreModule.New
                  .RegisterContainerBuilder()
+              
                      .UseGalaxyCore(b =>
                      {
                          b.UseConventinalCustomRepositories(typeof(BrandRepository).Assembly);
                          b.UseConventinalPolicies(typeof(BrandPolicy).Assembly);
                          b.UseConventinalDomainService(typeof(Brand).Assembly);
-                         //b.UseConventinalApplicationService(typeof(CustomerAppService).Assembly);
+                         b.UseConventinalApplicationService(typeof(CustomerAppService).Assembly);
                          b.UseConventinalDomainEvents(typeof(BrandNameChangedDomainEventHandler).Assembly);
 
                          b.RegisterAssemblyTypes(typeof(CustomerAppService).Assembly)

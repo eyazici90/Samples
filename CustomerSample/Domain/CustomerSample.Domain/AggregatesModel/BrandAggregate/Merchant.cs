@@ -8,7 +8,7 @@ namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
    public class Merchant : Entity, IEntity
     {
-        public int Id { get; private set; }
+        
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public int BrandId { get; private set; }

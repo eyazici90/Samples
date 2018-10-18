@@ -28,7 +28,6 @@ namespace CustomerSample.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(DEFAULT_SCHEMA);
-           // modelBuilder.ApplyAllConfigurationsFromCurrentAssembly(typeof(BrandEntityTypeConfiguration).Assembly);
             base.OnModelCreating(modelBuilder);
         }
      
