@@ -1,2 +1,6 @@
 # Samples
-My samples for fun
+
+
+|CustomerSample| Customer Domain based on Galaxy Infrastructure|
+|--|--|
+
