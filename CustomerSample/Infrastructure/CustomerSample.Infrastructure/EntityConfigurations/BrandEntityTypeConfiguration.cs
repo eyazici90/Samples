@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CustomerSample.Infrastructure.EntityConfigurations
 {
-    public class BrandEntityTypeConfiguration : GalaxyBaseEntityTypeConfigration<Brand>
+    public class BrandEntityTypeConfiguration : GalaxyBaseAuditEntityTypeConfiguration<Brand>
     {
         public override void Configure(EntityTypeBuilder<Brand> builder)
         {

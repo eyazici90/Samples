@@ -3,6 +3,7 @@ using CustomerSample.Customer.Domain.Exceptions;
 using CustomerSample.Domain.Events;
 using Galaxy.Auditing;
 using Galaxy.Domain;
+using Galaxy.Domain.Auditing;
 using Galaxy.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Linq;
 
 namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
-    public sealed class Brand : FullyAuditEntity , ISoftDelete, IAggregateRoot // Marker Interface
+    public sealed class Brand : FullyAuditAggregateRootEntity
     {
         public  string EMail { get; private set; }
         public  string BrandName { get; private set; }
