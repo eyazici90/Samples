@@ -1,5 +1,4 @@
 {
-  
   "ReRoutes": [
 	{
       "DownstreamPathTemplate": "/api/Customer/Brands",

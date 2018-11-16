@@ -57,7 +57,7 @@ namespace OceloteSample.ApiGateway
                 Console.WriteLine($"{DateTime.Now} - Request Ended !!!");
             });
 
-            app.UseOcelot(conf=> {
+            app.UseOcelot(conf => {
                 conf.PreQueryStringBuilderMiddleware = async (ctx, next) =>
                 {
                     Console.WriteLine($"{DateTime.Now} : Requesting URL is : {ctx.HttpContext.Request.Path.ToString()}");
