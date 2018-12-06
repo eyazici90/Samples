@@ -62,9 +62,7 @@ namespace Galaxy.UnitOfWork
             {
                 _unitOfWorkAsync.Dispose();
                 throw ex;
-            }
-            //_unitOfWorkAsync.SaveChangesAsync().ConfigureAwait(false)
-            //.GetAwaiter().GetResult();   
+            } 
             this._unitOfWorkAsync.Commit();
         }
 

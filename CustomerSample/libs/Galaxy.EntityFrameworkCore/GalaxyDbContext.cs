@@ -207,10 +207,6 @@ namespace Galaxy.EFCore
 
         public async Task DispatchNotificationsAsync(IMediator mediator)
         {
-            var etst = ChangeTracker
-                 .Entries<IEntity>();
-
-
             var notifications = ChangeTracker
                 .Entries<IEntity>()
                 .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any());

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomerSample.Customer.Domain.AggregatesModel.BrandAggregate
 {
-   public class Merchant : Entity, IEntity
+   public class Merchant : Entity
     {
         
         public string Name { get; private set; }

@@ -29,7 +29,7 @@ namespace CustomerSample.Application
             this._brandPolicy = brandPolicy ?? throw new ArgumentNullException(nameof(brandPolicy));
         }
 
-        public async Task<IList<BrandDto>> GetAllBrandsAsync() => await QueryableNoTrack().ToListAsync();
+        public async Task<IList<BrandDto>> GetAllBrandsAsync() => await this.QueryableNoTrack().ToListAsync();
         
         public async Task AddNewBrand(BrandDto brandDto)
         {

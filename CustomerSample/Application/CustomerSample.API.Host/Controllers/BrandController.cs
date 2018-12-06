@@ -22,8 +22,8 @@ namespace CustomerSample.API.Host.Controllers
         [Route("api/Customer/Brands")]
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public  Task<IActionResult> GetAllBrandsAsync() =>
-               ResponseOrThrow(async () => await this._customerAppServ.GetAllBrandsAsync());
+        public   Task<IActionResult> GetAllBrandsAsync() =>
+             ResponseOrThrow(async () => await this._customerAppServ.GetAllBrandsAsync());
 
         [Route("api/Customer/Brand/{id}")]
         [HttpGet]

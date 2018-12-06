@@ -16,6 +16,6 @@ namespace CustomerSample.Common.Dtos
         public string SNCode { get;  set; }
         public bool IsActive { get;  set; }
 
-        public IEnumerable<MerchantDto> Merchants { get; set; }
+        //public IEnumerable<MerchantDto> Merchants { get; set; }
     }
 }

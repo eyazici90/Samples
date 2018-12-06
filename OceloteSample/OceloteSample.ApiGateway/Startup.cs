@@ -57,6 +57,11 @@ namespace OceloteSample.ApiGateway
                 Console.WriteLine($"{DateTime.Now} - Request Ended !!!");
             });
 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("https://petstore.swagger.io/v2/swagger.json", "Ocelot");
+            });
+
             app.UseOcelot(conf=> {
                 conf.PreQueryStringBuilderMiddleware = async (ctx, next) =>
                 {
