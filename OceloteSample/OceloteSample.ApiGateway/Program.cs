@@ -23,7 +23,7 @@ namespace OceloteSample.ApiGateway
             IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);
             builder.ConfigureServices(s => s.AddSingleton(builder))
                 .ConfigureAppConfiguration(ic => ic.AddJsonFile(
-                    path: Path.Combine("configuration", "configuration.json")
+                    path: Path.Combine(string.Empty, "appsettings.json")
                     , optional: false
                     , reloadOnChange: true))
                 .UseStartup<Startup>();

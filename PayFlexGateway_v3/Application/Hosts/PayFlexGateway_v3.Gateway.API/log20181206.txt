@@ -1,0 +1,4 @@
+2018-12-06 16:47:33.016 +03:00 [INF] http localhost:5000/healthcheck  
+2018-12-06 16:47:33.375 +03:00 [INF] Response {"status":"Healty"}
+2018-12-06 17:21:55.649 +03:00 [INF] http localhost:5000/healthcheck  
+2018-12-06 17:22:03.946 +03:00 [INF] Response {"status":"Healty"}
