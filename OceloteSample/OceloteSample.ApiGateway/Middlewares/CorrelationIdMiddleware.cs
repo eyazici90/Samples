@@ -10,12 +10,10 @@ namespace OceloteSample.ApiGateway.Middlewares
     {
         private readonly RequestDelegate _next;
 
-     
         public CorrelationIdMiddleware(RequestDelegate next)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
         }
-
       
         public async Task Invoke(HttpContext context)
         {
@@ -28,7 +26,6 @@ namespace OceloteSample.ApiGateway.Middlewares
                });
                 
                await _next(context);
-            
         }
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using OceloteSample.ApiGateway.Middlewares;
@@ -30,6 +32,15 @@ namespace OceloteSample.ApiGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+
+            services.AddMvc()
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            })
+           .AddControllersAsServices();
+
             services.AddOcelot(Configuration);
         }
 
@@ -48,21 +59,14 @@ namespace OceloteSample.ApiGateway
             
             app.UseMiddleware<CorrelationIdMiddleware>();
 
-            app.Use(async (context, next) =>
+
+            app.UseMvc(routes =>
             {
-                Console.WriteLine($"{DateTime.Now} - Request Started !!!");
-                // Do work that doesn't write to the Response.
-                await next.Invoke();
-                // Do logging or other work that doesn't write to the Response.
-                Console.WriteLine($"{DateTime.Now} - Request Ended !!!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "api/{controller}/{action}/{id?}");
             });
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("https://petstore.swagger.io/v2/swagger.json", "Ocelot");
-            });
-
-            app.UseOcelot(conf=> {
                 conf.PreQueryStringBuilderMiddleware = async (ctx, next) =>
                 {
                     Console.WriteLine($"{DateTime.Now} : Requesting URL is : {ctx.HttpContext.Request.Path.ToString()}");
