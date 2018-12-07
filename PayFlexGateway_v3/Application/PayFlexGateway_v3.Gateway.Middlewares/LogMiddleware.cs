@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
-using PayFlexGateway_v3.Gateway.Persistance.Commands;
+using PayFlexGateway_v3.Gateway.Commands;
+using PayFlexGateway_v3.Gateway.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,22 +15,19 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
     public class LogMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILog _log;
-        private readonly IMediator _mediatr;
+        private readonly ILogService _logService;
         public LogMiddleware(RequestDelegate next
-            , ILog log
-            , IMediator mediatr)
+            , ILogService logService)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
-            _log = log ?? throw new ArgumentNullException(nameof(log));
-            _mediatr = mediatr ?? throw new ArgumentNullException(nameof(mediatr));
+            _logService = logService ?? throw new ArgumentNullException(nameof(logService));
         }
-
-
+         
         public async Task Invoke(HttpContext context)
         {
-            // _log.Information(await FormatRequest(context.Request));
-            await _mediatr.Send(new LogRequestCommand {
+             
+            await this._logService.LogRequest(new LogRequestCommand
+            {
                 Body = await FormatRequest(context.Request)
             });
 
@@ -41,7 +39,10 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
 
                 await _next(context);
 
-                _log.Information(await FormatResponse(context.Response));
+                await this._logService.LogResponse(new LogResponseCommand
+                {
+                    Body = await FormatResponse(context.Response)
+                });
                 await responseBody.CopyToAsync(originalBodyStream);
             }
         }
@@ -65,7 +66,7 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
             var text = await new StreamReader(response.Body).ReadToEndAsync();
             response.Body.Seek(0, SeekOrigin.Begin);
 
-            return $"Response {text}";
+            return $"Response: {text}";
         }
     }
 }

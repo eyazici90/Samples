@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PayFlexGateway_v3.Gateway.Persistance.Commands
+namespace PayFlexGateway_v3.Gateway.Commands
 {
     public class LogRequestCommand : IRequest<bool>
     {

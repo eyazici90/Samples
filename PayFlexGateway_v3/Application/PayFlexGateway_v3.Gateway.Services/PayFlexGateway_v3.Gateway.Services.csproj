@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Persistance\PayFlexGateway_v3.Gateway.Persistance\PayFlexGateway_v3.Gateway.Persistance.csproj" />
+    <ProjectReference Include="..\PayFlexGateway_v3.Gateway.Persistances\PayFlexGateway_v3.Gateway.Persistances.csproj" />
+    <ProjectReference Include="..\PayFlexGateway_v3.Gateway.Queries\PayFlexGateway_v3.Gateway.Queries.csproj" />
+    <ProjectReference Include="..\PayFlexGateway_v3.Gateway.Services.Contracts\PayFlexGateway_v3.Gateway.Services.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
