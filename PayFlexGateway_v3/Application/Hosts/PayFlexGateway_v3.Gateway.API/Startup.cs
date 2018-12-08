@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Galaxy.Bootstrapping;
 using Galaxy.Cache;
+using Galaxy.Cache.Bootstrapper;
 using Galaxy.Serialization;
 using Galaxy.Serilog.Bootstrapper;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,9 @@ using Newtonsoft.Json.Serialization;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using PayFlexGateway_v3.Gateway.Middlewares;
-using PayFlexGateway_v3.Gateway.Persistance.CommandHandlers;
+using PayFlexGateway_v3.Gateway.Persistances.CommandHandlers;
+using PayFlexGateway_v3.Gateway.Queries;
+using PayFlexGateway_v3.Gateway.Services;
 using Serilog;
 
 namespace PayFlexGateway_v3.Gateway.API
@@ -30,10 +33,8 @@ namespace PayFlexGateway_v3.Gateway.API
     public partial class Startup
     {
         public Startup(IConfiguration configuration)
-        {
-            Configuration = new ConfigurationBuilder()
-                        .AddJsonFile(Path.Combine(string.Empty, "appsettings.json"), optional: true, reloadOnChange: true)
-                        .Build();
+        { 
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -42,6 +43,8 @@ namespace PayFlexGateway_v3.Gateway.API
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+
+            services.AddOptions();
 
             services.AddMvc()
                 .AddJsonOptions(options =>
@@ -71,6 +74,8 @@ namespace PayFlexGateway_v3.Gateway.API
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
+
+            ConfigureSwagger(app);
 
             ConfigureMiddlewares(app);
             
@@ -102,8 +107,10 @@ namespace PayFlexGateway_v3.Gateway.API
                  .RegisterGalaxyContainerBuilder()
                      .UseGalaxyCore(b=>
                      {
-                         b.UseConventionalCommandHandlers(typeof(LogRequestCommandHandler).Assembly); 
+                         b.UseConventionalCommandHandlers(typeof(LogRequestCommandHandler).Assembly,typeof(GetAllLogsQueryHandler).Assembly);
+                         b.UseConventionalApplicationService(typeof(LogService).Assembly);
                      })
+                     .UseGalaxyInMemoryCache(services)
                      .UseGalaxySerilogger(configs => {
                          configs.WriteTo.File($"log.txt",
                             rollingInterval: RollingInterval.Day,
@@ -120,6 +127,20 @@ namespace PayFlexGateway_v3.Gateway.API
             app.UseMiddleware<IdempotencyMiddleware>();
             app.UseMiddleware<LogMiddleware>();
             app.UseMiddleware<CorrelationIdMiddleware>();
+            app.UseMiddleware<HealthCheckMiddleware>();
+        }
+
+        private void ConfigureSwagger(IApplicationBuilder app)
+        {
+            var swaggerUrls = Configuration.GetSection("SwaggerUrls").GetChildren();
+
+            app.UseSwaggerUI(c =>
+            {
+                foreach (var swaggerConf in swaggerUrls)
+                {
+                    c.SwaggerEndpoint(swaggerConf.Value, swaggerConf.Key);
+                }
+            });
         }
     }
 }
