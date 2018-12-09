@@ -94,6 +94,7 @@ namespace PayFlexGateway_v3.Gateway.API
         private void ConfigureMiddlewares(IApplicationBuilder app)
         {
             app.UseMiddleware<HttpGlobalExceptionMiddleware>();
+            app.UseMiddleware<CircuitBreakerMiddleware>();
             app.UseMiddleware<HealthCheckMiddleware>();
             app.UseMiddleware<IdempotencyMiddleware>();
             app.UseMiddleware<LogMiddleware>();

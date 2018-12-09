@@ -27,12 +27,8 @@ namespace PayFlexGateway_v3.Gateway.CommandHandlers
                 try
                 {
                     var obj = JToken.Parse(jsonString);
-                }
-                catch (JsonReaderException)
-                {
-                    throw;
-                }
-                catch (Exception)
+                } 
+                catch (Exception ex)
                 {
                     throw;
                 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Polly" Version="6.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PayFlexGateway_v3.Gateway.Application.Contracts\PayFlexGateway_v3.Gateway.Application.Contracts.csproj" />
   </ItemGroup>
 
