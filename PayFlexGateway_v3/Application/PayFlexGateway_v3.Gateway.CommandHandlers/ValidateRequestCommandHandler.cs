@@ -15,12 +15,12 @@ namespace PayFlexGateway_v3.Gateway.CommandHandlers
             if (!string.IsNullOrEmpty(request.ContentType))
             {
                 this.AssertJson(request.Body);
-            }
+            } 
             return true;
         }
 
         private void AssertJson(string jsonString)
-        {
+        { 
             if ((jsonString.StartsWith("{") && jsonString.EndsWith("}")) || 
                  (jsonString.StartsWith("[") && jsonString.EndsWith("]"))) 
             {
@@ -28,7 +28,7 @@ namespace PayFlexGateway_v3.Gateway.CommandHandlers
                 {
                     var obj = JToken.Parse(jsonString);
                 } 
-                catch (Exception ex)
+                catch  
                 {
                     throw;
                 }

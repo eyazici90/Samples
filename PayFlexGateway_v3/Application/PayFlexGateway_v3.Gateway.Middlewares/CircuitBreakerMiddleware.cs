@@ -48,7 +48,7 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
             command.Execution = async () => await _next(context);
 
             await this._resilenceService
-                .ExecuteWithCircuitBreakerAsync( command);
+                .ExecuteWithCircuitBreakerAsync(command);
         }
     }
 }

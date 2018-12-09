@@ -24,7 +24,7 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
         public async Task Invoke(HttpContext context)
         {
             try
-            {
+            { 
                 await _next(context);
             }
             catch (Exception ex)
