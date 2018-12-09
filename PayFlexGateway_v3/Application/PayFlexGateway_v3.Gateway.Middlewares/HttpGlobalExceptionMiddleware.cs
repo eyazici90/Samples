@@ -29,11 +29,24 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
             }
             catch (Exception ex)
             {
-                await context.Response.WriteAsync(this._serializer.Serialize(
-                    new { ErrorMsj = ex.Message, DetailMessage = ex.InnerException?.Message }
-                    ));
+                context.Response.OnStarting(async () => {
+
+                    context.Response.Clear();
+                    context.Response.StatusCode = (int)HttpStatusCode.OK;
+                    context.Response.ContentType = "application/json";
+
+                    var errorResult = this._serializer.Serialize(
+                            new { ErrorMsj = ex.Message, Description = ex.InnerException?.Message }
+                            );
+
+                    await context.Response.WriteAsync(errorResult);
+                });
+                
+              
             }
-          
+
         }
+       
+
     }
 }

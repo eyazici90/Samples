@@ -58,12 +58,12 @@ namespace PayFlexGateway_v3.Gateway.API
             app.UseOcelot(conf =>
             {
                 conf.PreQueryStringBuilderMiddleware = async (ctx, next) =>
-                {
-                    await next.Invoke();
+                { 
+                        await next.Invoke();  
                 };
                 conf.PreErrorResponderMiddleware = async (ctx, next) =>
-                {
-                    await next.Invoke();
+                { 
+                        await next.Invoke(); 
                 };
             })
            .ConfigureAwait(false)

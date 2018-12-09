@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlexGateway_v3.Gateway.W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{11783BB1-49D3-4247-A7AE-DD94B6852043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayFlexGateway_v3.Gateway.Shared", "Shared\PayFlexGateway_v3.Gateway.Shared\PayFlexGateway_v3.Gateway.Shared.csproj", "{A4B70F1E-79E0-43B6-A722-0495B89CF12B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlexGateway_v3.Gateway.Shared", "Shared\PayFlexGateway_v3.Gateway.Shared\PayFlexGateway_v3.Gateway.Shared.csproj", "{A4B70F1E-79E0-43B6-A722-0495B89CF12B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".builds", ".builds", "{72074EB6-18FD-49EE-AACD-E06D451A19BB}"
 EndProject
@@ -60,6 +60,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlexGateway_v3.Gateway.QueryHandlers", "Application\PayFlexGateway_v3.Gateway.QueryHandlers\PayFlexGateway_v3.Gateway.QueryHandlers.csproj", "{3411ACFC-CAAB-4091-BC0E-59A0E6389F19}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlexGateway_v3.Gateway.Application.Tests", "Tests\PayFlexGateway_v3.Gateway.Application.Tests\PayFlexGateway_v3.Gateway.Application.Tests.csproj", "{F3D8D6DA-2FE1-442B-A210-3E8C05E295B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakeHttpServices", "FakeHttpServices", "{71A29C72-8961-4905-838B-EE140BF3DB5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayFlexGateway_v3.Fake.API", "Tests\PayFlexGateway_v3.Fake.API\PayFlexGateway_v3.Fake.API.csproj", "{55B72517-050A-4DDF-98F5-0D6FD1B87948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +155,10 @@ Global
 		{F3D8D6DA-2FE1-442B-A210-3E8C05E295B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3D8D6DA-2FE1-442B-A210-3E8C05E295B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D8D6DA-2FE1-442B-A210-3E8C05E295B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B72517-050A-4DDF-98F5-0D6FD1B87948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B72517-050A-4DDF-98F5-0D6FD1B87948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B72517-050A-4DDF-98F5-0D6FD1B87948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B72517-050A-4DDF-98F5-0D6FD1B87948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,6 +186,8 @@ Global
 		{9380820B-B40A-4FB2-AC80-154EE3BC6AB0} = {BE65C440-57B1-4D3F-B135-F9C4E3E72DCC}
 		{3411ACFC-CAAB-4091-BC0E-59A0E6389F19} = {BE65C440-57B1-4D3F-B135-F9C4E3E72DCC}
 		{F3D8D6DA-2FE1-442B-A210-3E8C05E295B1} = {65308F98-D329-4001-9EC6-A14CD60BEA4B}
+		{71A29C72-8961-4905-838B-EE140BF3DB5A} = {65308F98-D329-4001-9EC6-A14CD60BEA4B}
+		{55B72517-050A-4DDF-98F5-0D6FD1B87948} = {71A29C72-8961-4905-838B-EE140BF3DB5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D7C9F38-3791-411F-9120-517B3176367C}
