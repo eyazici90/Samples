@@ -1,4 +1,6 @@
-﻿using PayFlexGateway_v3.Gateway.Application.Contracts;
+﻿using MediatR;
+using PayFlexGateway_v3.Gateway.Application.Contracts;
+using PayFlexGateway_v3.Gateway.Shared.Commands;
 using Polly;
 using Polly.CircuitBreaker;
 using System;
@@ -17,18 +19,23 @@ namespace PayFlexGateway_v3.Gateway.Application.Services
                  durationOfBreak: TimeSpan.FromSeconds(10)
              );
 
+        private readonly IMediator _mediatr;
+        public ResilenceService(IMediator mediatr)
+        {
+            _mediatr = mediatr ?? throw new ArgumentNullException(nameof(mediatr));
+        }
+
         public Exception LastHandledExceptionByCircuitBreaker =>
         _circuitBreaker.LastException;
 
         public bool CheckIfBreakerStateOpened() =>
             _circuitBreaker.CircuitState == CircuitState.Open;
-        
-        public async Task ExecuteWithCircuitBreakerAsync(Func<Task> execution)
+
+        public async Task ExecuteWithCircuitBreakerAsync(ExecuteWithCircuitBreakerCommand command)
         {
-            await _circuitBreaker.ExecuteAsync(async () =>
-            {
-                await execution();
-            });
-        }
+            command.CircuitBreaker = _circuitBreaker;
+            await _mediatr.Send(command);
+        } 
+       
     }
 }

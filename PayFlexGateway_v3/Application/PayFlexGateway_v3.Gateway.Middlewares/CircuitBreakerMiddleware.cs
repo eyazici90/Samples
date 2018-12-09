@@ -1,6 +1,7 @@
 ﻿using Galaxy.Serialization;
 using Microsoft.AspNetCore.Http;
 using PayFlexGateway_v3.Gateway.Application.Contracts;
+using PayFlexGateway_v3.Gateway.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -42,11 +43,12 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
                 });
                 return;
             }
+            var command = new ExecuteWithCircuitBreakerCommand();
+
+            command.Execution = async () => await _next(context);
 
             await this._resilenceService
-                .ExecuteWithCircuitBreakerAsync(async () => {
-                     await _next(context); 
-                });
+                .ExecuteWithCircuitBreakerAsync( command);
         }
     }
 }
