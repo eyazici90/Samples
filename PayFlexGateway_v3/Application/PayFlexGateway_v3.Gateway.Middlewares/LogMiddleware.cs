@@ -1,9 +1,9 @@
 ﻿using Galaxy.Log;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
-using PayFlexGateway_v3.Gateway.Commands;
+using Microsoft.AspNetCore.Http.Internal; 
 using PayFlexGateway_v3.Gateway.Services.Contracts;
+using PayFlexGateway_v3.Gateway.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,14 +49,13 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
 
         private async Task<string> FormatRequest(HttpRequest request)
         {
-            var body = request.Body;
             request.EnableRewind();
-
+            var body = request.Body;
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
             await request.Body.ReadAsync(buffer, 0, buffer.Length);
             var bodyAsText = Encoding.UTF8.GetString(buffer);
+            body.Seek(0, SeekOrigin.Begin);
             request.Body = body;
-
             return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
         }
 

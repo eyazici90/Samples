@@ -19,7 +19,7 @@ namespace PayFlexGateway_v3.Gateway.Middlewares
         {
             var correlationId = Guid.NewGuid().ToString();
 
-            context.Response.Headers.Add("gw-correlationId", correlationId);
+            context.Response.Headers.Add("PGW-Correlation-Id", correlationId);
 
             await _next(context);
         }

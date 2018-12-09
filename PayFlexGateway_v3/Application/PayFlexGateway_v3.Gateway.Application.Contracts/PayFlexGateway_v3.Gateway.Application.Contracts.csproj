@@ -6,8 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\libs\Galaxy\Galaxy.csproj" />
-    <ProjectReference Include="..\PayFlexGateway_v3.Gateway.Commands\PayFlexGateway_v3.Gateway.Commands.csproj" />
+    <ProjectReference Include="..\..\Shared\PayFlexGateway_v3.Gateway.Shared\PayFlexGateway_v3.Gateway.Shared.csproj" />
   </ItemGroup>
 
- 
 </Project>

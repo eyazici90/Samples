@@ -1,5 +1,5 @@
 ﻿using Galaxy.Application;
-using PayFlexGateway_v3.Gateway.Commands;
+using PayFlexGateway_v3.Gateway.Shared.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

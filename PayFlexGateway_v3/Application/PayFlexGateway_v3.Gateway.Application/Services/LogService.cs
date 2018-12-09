@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using PayFlexGateway_v3.Gateway.Commands;
-using PayFlexGateway_v3.Gateway.Commands.QueryCommands;
 using PayFlexGateway_v3.Gateway.Services.Contracts;
+using PayFlexGateway_v3.Gateway.Shared.Commands;
+using PayFlexGateway_v3.Gateway.Shared.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayFlexGateway_v3.Gateway.Services
+namespace PayFlexGateway_v3.Gateway.Application.Services
 {
     public class LogService : ILogService
     {

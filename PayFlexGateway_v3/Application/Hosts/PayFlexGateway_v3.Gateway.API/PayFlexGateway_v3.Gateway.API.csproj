@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="log20181207.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Ocelot" Version="12.0.1" />
@@ -14,8 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PayFlexGateway_v3.Gateway.Application\PayFlexGateway_v3.Gateway.Application.csproj" />
+    <ProjectReference Include="..\..\PayFlexGateway_v3.Gateway.CommandHandlers\PayFlexGateway_v3.Gateway.CommandHandlers.csproj" />
     <ProjectReference Include="..\..\PayFlexGateway_v3.Gateway.Middlewares\PayFlexGateway_v3.Gateway.Middlewares.csproj" />
-    <ProjectReference Include="..\..\PayFlexGateway_v3.Gateway.Services\PayFlexGateway_v3.Gateway.Services.csproj" />
+    <ProjectReference Include="..\..\PayFlexGateway_v3.Gateway.QueryHandlers\PayFlexGateway_v3.Gateway.QueryHandlers.csproj" />
   </ItemGroup>
 
 </Project>

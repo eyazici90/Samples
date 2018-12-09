@@ -1,31 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Galaxy.Bootstrapping;
 using Galaxy.Cache;
 using Galaxy.Cache.Bootstrapper;
-using Galaxy.Serialization;
 using Galaxy.Serilog.Bootstrapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using PayFlexGateway_v3.Gateway.Application.Services;
+using PayFlexGateway_v3.Gateway.CommandHandlers;
 using PayFlexGateway_v3.Gateway.Middlewares;
-using PayFlexGateway_v3.Gateway.Persistances.CommandHandlers;
-using PayFlexGateway_v3.Gateway.Queries;
-using PayFlexGateway_v3.Gateway.Services;
+using PayFlexGateway_v3.Gateway.QueryHandlers;
 using Serilog;
 
 namespace PayFlexGateway_v3.Gateway.API
@@ -46,14 +35,6 @@ namespace PayFlexGateway_v3.Gateway.API
 
             services.AddOptions();
 
-            services.AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                })
-               .AddControllersAsServices();
-
             services.AddOcelot(Configuration);
 
             var container = this.ConfigureGalaxy(services);
@@ -62,12 +43,7 @@ namespace PayFlexGateway_v3.Gateway.API
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+        {  
             app.UseCors(builder =>
             {
                 builder.AllowAnyOrigin()
@@ -79,13 +55,6 @@ namespace PayFlexGateway_v3.Gateway.API
 
             ConfigureMiddlewares(app);
             
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "api/{controller}/{action}/{id?}");
-            });
-
             app.UseOcelot(conf =>
             {
                 conf.PreQueryStringBuilderMiddleware = async (ctx, next) =>
@@ -107,7 +76,7 @@ namespace PayFlexGateway_v3.Gateway.API
                  .RegisterGalaxyContainerBuilder()
                      .UseGalaxyCore(b=>
                      {
-                         b.UseConventionalCommandHandlers(typeof(LogRequestCommandHandler).Assembly,typeof(GetAllLogsQueryHandler).Assembly);
+                         b.UseConventionalCommandHandlers(typeof(LogCommandHandler).Assembly,typeof(LogQueryHandler).Assembly);
                          b.UseConventionalApplicationService(typeof(LogService).Assembly);
                      })
                      .UseGalaxyInMemoryCache(services)
@@ -124,10 +93,12 @@ namespace PayFlexGateway_v3.Gateway.API
 
         private void ConfigureMiddlewares(IApplicationBuilder app)
         {
+            app.UseMiddleware<HttpGlobalExceptionMiddleware>();
+            app.UseMiddleware<HealthCheckMiddleware>();
             app.UseMiddleware<IdempotencyMiddleware>();
             app.UseMiddleware<LogMiddleware>();
+            app.UseMiddleware<HttpValidationMiddleware>();
             app.UseMiddleware<CorrelationIdMiddleware>();
-            app.UseMiddleware<HealthCheckMiddleware>();
         }
 
         private void ConfigureSwagger(IApplicationBuilder app)
@@ -138,7 +109,7 @@ namespace PayFlexGateway_v3.Gateway.API
             {
                 foreach (var swaggerConf in swaggerUrls)
                 {
-                    c.SwaggerEndpoint(swaggerConf.Value, swaggerConf.Key);
+                    c.SwaggerEndpoint(swaggerConf.Value, swaggerConf.Key);     
                 }
             });
         }
