@@ -1,0 +1,280 @@
+2018-12-28 11:07:35.767 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:07:38.217 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:07:50.187 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:07:51.847 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:07:53.100 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:07:54.629 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:08:11.371 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:08:13.355 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:10:23.802 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:10:26.066 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:10:27.808 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:10:29.434 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
+2018-12-28 11:10:30.752 +03:00 [INF] http localhost:5000/Wm  POST {
+    "result": "Hello From WireMock
+}
+2018-12-28 11:10:32.191 +03:00 [FTL] Invalid Json string: {
+    "result": "Hello From WireMock
+}
+System.Exception: Invalid Json string: {
+    "result": "Hello From WireMock
+}
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.AssertJson(String jsonString) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 40
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ValidateRequestCommandHandler.Handle(ValidateRequestCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ValidateRequestCommandHandler.cs:line 24
+   at PayFlexGateway_v3.Gateway.Application.Services.RequestValidatorService.ValidateRequest(ValidateRequestCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\RequestValidatorService.cs:line 18
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpRequestValidationMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpRequestValidationMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.LogMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\LogMiddleware.cs:line 40
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.IdempotencyMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\IdempotencyMiddleware.cs:line 46
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.<>c__DisplayClass4_0.<<Invoke>b__1>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 48
+--- End of stack trace from previous location where exception was thrown ---
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.<>c__DisplayClass0_0.<<Handle>b__0>d.MoveNext() in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 16
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreakerSyntaxAsync.<>c__DisplayClass5_1.<<CircuitBreakerAsync>b__2>d.MoveNext() in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerSyntaxAsync.cs:line 223
+--- End of stack trace from previous location where exception was thrown ---
+   at Polly.CircuitBreaker.CircuitBreakerEngine.ImplementationAsync[TResult](Func`3 action, Context context, IEnumerable`1 shouldHandleExceptionPredicates, IEnumerable`1 shouldHandleResultPredicates, ICircuitController`1 breakerController, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\CircuitBreaker\CircuitBreakerEngineAsync.cs:line 27
+   at Polly.Policy.ExecuteAsyncInternal(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.cs:line 41
+   at Polly.Policy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext) in C:\projects\polly\src\Polly.Shared\Policy.Async.ExecuteOverloads.cs:line 125
+   at PayFlexGateway_v3.Gateway.CommandHandlers.ExecuteThroughCircuitBreakerCommandHandler.Handle(ExecuteThroughCircuitBreakerCommand request, CancellationToken cancellationToken) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.CommandHandlers\ExecuteThroughCircuitBreakerCommandHandler.cs:line 14
+   at PayFlexGateway_v3.Gateway.Application.Services.ResilenceService.ExecuteWithCircuitBreakerAsync(ExecuteThroughCircuitBreakerCommand command) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Application\Services\ResilenceService.cs:line 38
+   at Galaxy.FluentValidation.ValidatorInterceptor.InterceptAsync(IInvocation invocation, Task task) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\libs\Galaxy.FluentValidation\ValidatorInterceptor.cs:line 81
+   at PayFlexGateway_v3.Gateway.Middlewares.CircuitBreakerMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CircuitBreakerMiddleware.cs:line 51
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.CorrelationIdMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\CorrelationIdMiddleware.cs:line 25
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HealthCheckMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HealthCheckMiddleware.cs:line 29
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.BlackListingMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\BlackListingMiddleware.cs:line 42
+   at Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisMiddleware.Invoke(HttpContext httpContext)
+   at PayFlexGateway_v3.Gateway.Middlewares.HttpGlobalExceptionMiddleware.Invoke(HttpContext context) in C:\Projects\Payflex.Gateway\branches\PayFlexGateway_v3\Application\PayFlexGateway_v3.Gateway.Middlewares\HttpGlobalExceptionMiddleware.cs:line 33
