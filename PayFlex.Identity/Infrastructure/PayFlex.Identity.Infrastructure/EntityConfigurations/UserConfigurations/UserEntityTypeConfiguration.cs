@@ -24,6 +24,10 @@ namespace PayFlex.Identity.Infrastructure.EntityConfigurations.UserConfiguration
                 .WithOne()
                 .HasForeignKey(e => e.UserId);
 
+            builder.HasMany(e => e.UserTenants)
+                .WithOne()
+                .HasForeignKey(e=>e.UserId);
+
             builder.HasOne<Tenant>()
                 .WithMany()
                 .HasForeignKey(e => e.TenantId);

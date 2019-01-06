@@ -18,7 +18,7 @@ namespace PayFlex.Identity.Application.Services
     {
         private readonly IRepositoryAsync<User, int> _userRep;
         public UserAppService(IRepositoryAsync<User, int> repositoryAsync
-            , IObjectMapper objectMapper, IUnitOfWorkAsync unitOfWork) : base(repositoryAsync, objectMapper, unitOfWork)
+            , IObjectMapper objectMapper) : base(repositoryAsync, objectMapper)
         {
             _userRep = repositoryAsync;
         }

@@ -9,8 +9,12 @@ using System.Text;
 
 namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
 {
-    public sealed class User : FullyAuditIdentityUserEntity<int>, IAggregateRoot
+    public sealed class User : FullyAuditIdentityUserEntity, IAggregateRoot
     {
+        private List<UserAssignedToTenant> _userTenants;
+
+        public IEnumerable<UserAssignedToTenant> UserTenants => _userTenants.AsEnumerable();
+
         private List<UserAssignedToRole> _userRoles;
 
         public IEnumerable<UserAssignedToRole> UserRoles => _userRoles.AsEnumerable();
@@ -19,10 +23,11 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
 
         public IEnumerable<UserAssignedToPermission> UserPermissions => _userPermissions.AsEnumerable();
 
-        private User() : base()
+        private User() 
         {
             _userRoles = new List<UserAssignedToRole>();
             _userPermissions = new List<UserAssignedToPermission>();
+            _userTenants = new List<UserAssignedToTenant>();
         }
 
         private User(string userName, int tenantId) : this()
@@ -56,6 +61,15 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
             var userPermission = UserAssignedToPermission.Create(this.Id, permissionId);
             this._userPermissions.Add(userPermission);
             ApplyEvent(new PermissionAssignedToUserDomainEvent(this));
+        }
+
+        public void AssignTenant(int tenantId)
+        {
+            if (tenantId < 0)
+                throw new IdentityDomainException($"Invalid TenantId : {tenantId}");
+            var userTenant = UserAssignedToTenant.Create(this.Id, tenantId);
+            this._userTenants.Add(userTenant);
+            ApplyEvent(new TenantAssignedToUserDomainEvent(this));
         }
 
     }

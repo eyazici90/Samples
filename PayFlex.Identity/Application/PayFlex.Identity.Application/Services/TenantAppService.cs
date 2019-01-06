@@ -16,7 +16,7 @@ namespace PayFlex.Identity.Application.Services
     public class TenantAppService : CrudAppServiceAsync<TenantDto, int, Tenant>, ITenanAppService
     {
         public TenantAppService(IRepositoryAsync<Tenant, int> repositoryAsync
-            , IObjectMapper objectMapper, IUnitOfWorkAsync unitOfWork) : base(repositoryAsync, objectMapper, unitOfWork)
+            , IObjectMapper objectMapper ) : base(repositoryAsync, objectMapper)
         {
         }
 

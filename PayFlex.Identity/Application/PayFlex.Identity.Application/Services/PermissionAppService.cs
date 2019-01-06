@@ -16,8 +16,7 @@ namespace PayFlex.Identity.Application.Services
     public class PermissionAppService : CrudAppServiceAsync<PermissionDto, int, Permission>, IPermissionAppService
     {
         public PermissionAppService(IRepositoryAsync<Permission, int> repositoryAsync
-            , IObjectMapper objectMapper
-            , IUnitOfWorkAsync unitOfWork) : base(repositoryAsync, objectMapper, unitOfWork)
+            , IObjectMapper objectMapper) : base(repositoryAsync, objectMapper)
         {
         }
 

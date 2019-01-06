@@ -5,9 +5,9 @@ using System.Text;
 
 namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
 {
-    public class UserAssignedToRole : IdentityUserRoleEntity<int>
+    public class UserAssignedToRole : IdentityUserRoleEntity
     {
-        private UserAssignedToRole() : base()
+        private UserAssignedToRole() 
         {
         }
 

@@ -8,6 +8,7 @@ namespace PayFlex.Identity.UnitTests
         [Fact]
         public void Test1()
         {
+            var test = "wqe";
 
         }
     }

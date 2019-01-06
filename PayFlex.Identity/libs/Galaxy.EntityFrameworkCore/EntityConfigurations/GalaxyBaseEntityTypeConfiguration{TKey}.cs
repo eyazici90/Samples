@@ -45,8 +45,7 @@ namespace Galaxy.EntityFrameworkCore.EntityConfigurations
                 builder
                  .Property(nameof(IConcurrencyTest.RowVersion))
                  .IsRowVersion();
-            }
-
+            } 
 
             builder.Ignore(e => e.ObjectState);
             builder.Ignore(e => e.DomainEvents);

@@ -11,7 +11,7 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
 
         public int PermissionId { get; private set; }
 
-        private UserAssignedToPermission() : base()
+        private UserAssignedToPermission()
         {
         }
 
@@ -21,7 +21,7 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
             this.PermissionId = permissionId;
         }
 
-        public static UserAssignedToPermission Create(int userId, int permissionId)
+        public  static UserAssignedToPermission Create(int userId, int permissionId)
         {
             return new UserAssignedToPermission(userId, permissionId);
         }

@@ -17,8 +17,7 @@ namespace PayFlex.Identity.Application.Services
     public class RoleAppService : CrudAppServiceAsync<RoleDto, int, Role>, IRoleAppService
     {
         public RoleAppService(IRepositoryAsync<Role, int> repositoryAsync
-            , IObjectMapper objectMapper
-            , IUnitOfWorkAsync unitOfWork) : base(repositoryAsync, objectMapper, unitOfWork)
+            , IObjectMapper objectMapper) : base(repositoryAsync, objectMapper)
         {
         }
 
@@ -30,7 +29,7 @@ namespace PayFlex.Identity.Application.Services
             });
         }
 
-        public async Task<IList<RoleDto>> GetAllRolesAsync()
+        public  async Task<IList<RoleDto>> GetAllRolesAsync()
         {
             return await QueryableNoTrack().ToListAsync();
         }
