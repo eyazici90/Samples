@@ -21,7 +21,7 @@ namespace PayFlex.Identity.Application.Services
         {
         }
 
-        public async Task<RoleDto> AddRole(RoleDto roleDto)
+        public async Task<RoleDto> AddRoleAsync(RoleDto roleDto)
         {
             return await AddAsync(async () => {
                 var role = Role.Create(roleDto.Name);
@@ -44,10 +44,21 @@ namespace PayFlex.Identity.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task UpdateRole(RoleDto roleDto)
+        public async Task UpdateRoleAsync(RoleDto roleDto)
         {
             await UpdateAsync(roleDto.Id, async role => {
                 role.ChangeName(roleDto.Name);
+            });
+        }
+
+        public async Task DeleteRoleAsync(int roleId)
+        {
+            //Hard Delete
+            //await DeleteAsync(roleId);
+
+            //Soft Delete
+            await UpdateAsync(roleId, async (role) => {
+                role.DeleteThisRole();
             });
         }
     }

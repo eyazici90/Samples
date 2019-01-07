@@ -83,6 +83,7 @@ namespace PayFlex.Identity.EFRepositories.UserAggregate
         {
             return (await this._userManager.DeleteAsync(user)).Succeeded;
         }
+
         public async Task<bool> Update(User user)
         {
             this._userRep.Update(user);

@@ -45,7 +45,7 @@ namespace PayFlex.Identity.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Create([FromBody] UserDto user) =>
-               Ok(await this._userAppServ.AddUser(user));
+               Ok(await this._userAppServ.AddUserAsync(user));
 
         [Route("api/v1/Identity/User")]
         [HttpPut]

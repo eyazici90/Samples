@@ -13,7 +13,7 @@ namespace PayFlex.Identity.Application.Contracts.Services
         [EnableUnitOfWork]
         Task AssignRoleToUser(UserDto userDto, int roleId);
 
-        Task<UserDto> FindByUsername(string userName);
+        Task<UserDto> FindByUsernameAsync(string userName);
 
         [EnableUnitOfWork]
         Task AssignPermissionToUser(UserDto userDto, int permissionId);
@@ -30,7 +30,7 @@ namespace PayFlex.Identity.Application.Contracts.Services
         Task<IEnumerable<UserAssignedToTenantDto>> GetUserTenantsByUserId(int userId);
 
         [EnableUnitOfWork]
-        Task<UserDto> AddUser(UserDto user);
+        Task<UserDto> AddUserAsync(UserDto user);
 
         [EnableUnitOfWork]
         Task DeleteUserAsync(int userId);

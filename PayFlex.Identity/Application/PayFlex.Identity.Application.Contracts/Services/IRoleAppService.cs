@@ -12,7 +12,7 @@ namespace PayFlex.Identity.Application.Contracts.Services
     public interface IRoleAppService : IApplicationService
     {
         [EnableUnitOfWork]
-        Task<RoleDto> AddRole(RoleDto roleDto);
+        Task<RoleDto> AddRoleAsync(RoleDto roleDto);
 
         Task<IEnumerable<UserAssignedToRoleDto>> GetUserAssignedToRoleByRoleId(int roleId);
 
@@ -21,6 +21,8 @@ namespace PayFlex.Identity.Application.Contracts.Services
         Task<IList<RoleDto>> GetAllRolesAsync();
 
         [EnableUnitOfWork]
-        Task UpdateRole(RoleDto role);
+        Task UpdateRoleAsync(RoleDto role);
+
+        Task DeleteRoleAsync(int roleId);
     }
 }

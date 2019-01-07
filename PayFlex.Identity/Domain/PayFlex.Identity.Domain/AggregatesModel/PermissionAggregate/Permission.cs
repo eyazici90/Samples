@@ -57,5 +57,11 @@ namespace PayFlex.Identity.Domain.AggregatesModel.PermissionAggregate
             this.Url = url;
             return this;
         }
+
+        public void DeleteThisPermission()
+        {
+            this.IsDeleted = true;
+        }
+
     }
 }

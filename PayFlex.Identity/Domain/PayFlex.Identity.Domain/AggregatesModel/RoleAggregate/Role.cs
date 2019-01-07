@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PayFlex.Identity.Domain.AggregatesModel.RoleAggregate
 {
-    public sealed class Role : FullyAuditIdentityRoleEntity<int>, IAggregateRoot
+    public sealed class Role : FullyAuditIdentityRoleEntity, IAggregateRoot
     {
         private Role() : base()
         {
@@ -30,6 +30,11 @@ namespace PayFlex.Identity.Domain.AggregatesModel.RoleAggregate
 
             this.Name = roleName;
             return this;
+        }
+
+        public void DeleteThisRole()
+        {
+            this.IsDeleted = true;
         }
     }
 }

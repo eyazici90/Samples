@@ -20,7 +20,7 @@ namespace PayFlex.Identity.Application.Services
         {
         }
 
-        public async Task<TenantDto> AddTenant(TenantDto tenantDto)
+        public async Task<TenantDto> AddTenantAsync(TenantDto tenantDto)
         {
             return await AddAsync(async () => {
                 var tenant = Tenant.Create(tenantDto.Name, tenantDto.Description);
@@ -28,7 +28,7 @@ namespace PayFlex.Identity.Application.Services
             });
         }
 
-        public async Task DeleteTenant(int id)
+        public async Task DeleteTenantAsync(int id)
         {
             await DeleteAsync(id);
         }
@@ -43,7 +43,7 @@ namespace PayFlex.Identity.Application.Services
             return await FindAsync(id);
         }
 
-        public async Task UpdateTenant(TenantDto tenantDto)
+        public async Task UpdateTenantAsync(TenantDto tenantDto)
         {
             await UpdateAsync(tenantDto.Id, async tenant => {
                 tenant.ChangeName(tenantDto.Name);

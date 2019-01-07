@@ -23,8 +23,8 @@ namespace PayFlex.Identity.Application.Services
         {
             _userRep = userRep; 
         }
-
-        public async Task<UserDto> AddUser(UserDto userDto)
+         
+        public async Task<UserDto> AddUserAsync(UserDto userDto)
         {
             var user = User.Create(userDto.UserName, userDto.Email, userDto.TenantId.Value);
             var createdUser = await this._userRep.CreateUserAsync(user, "123456.");
@@ -44,7 +44,7 @@ namespace PayFlex.Identity.Application.Services
                 user.AssignRole(roleId);
             });
         }
-
+        
         public async Task AssignTenantToUser(UserDto userDto, int tenantId)
         {
             await UpdateAsync(userDto.Id, async user => {
@@ -57,7 +57,7 @@ namespace PayFlex.Identity.Application.Services
             await DeleteAsync(userId);
         }
 
-        public async Task<UserDto> FindByUsername(string userName)
+        public async Task<UserDto> FindByUsernameAsync(string userName)
         {
            return  await QueryableNoTrack() 
                 .Where(u=> u.UserName == userName)
@@ -80,14 +80,14 @@ namespace PayFlex.Identity.Application.Services
              )
             .ToListAsync(); 
 
+
         public async Task UpdateUserAsync(UserDto userDto)
         {
             await UpdateAsync(userDto.Id, async user => {
 
                 user.ChangeUserName(userDto.UserName);
                 user.ChangeEmail(userDto.Email);
-                user.ChangePhoneNumber(string.Empty);
-
+                user.ChangePhoneNumber(string.Empty); 
             });
         }
 

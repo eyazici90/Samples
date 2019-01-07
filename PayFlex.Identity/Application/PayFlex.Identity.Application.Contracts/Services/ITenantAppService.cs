@@ -15,12 +15,12 @@ namespace PayFlex.Identity.Application.Contracts.Services
         Task<TenantDto> GetTenantByIdAsync(int id);
 
         [EnableUnitOfWork]
-        Task<TenantDto> AddTenant(TenantDto tenant);
+        Task<TenantDto> AddTenantAsync(TenantDto tenant);
 
         [EnableUnitOfWork]
-        Task DeleteTenant(int id);
+        Task DeleteTenantAsync(int id);
 
         [EnableUnitOfWork]
-        Task UpdateTenant(TenantDto tenant);
+        Task UpdateTenantAsync(TenantDto tenant);
     }
 }

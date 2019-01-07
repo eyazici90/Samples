@@ -52,7 +52,7 @@ namespace PayFlex.Identity.API.Controllers
             var validUser = await _userAppService.ValidateCredentialsByUserName(credentials);
             if (validUser != null)
             {
-                var user = await this._userAppService.FindByUsername(credentials.Username);
+                var user = await this._userAppService.FindByUsernameAsync(credentials.Username);
                 _claimList.Add(new Claim(ClaimTypes.UserData, user.Id.ToString()));
 
                 var userTenants = await this._userAppService.GetUserTenantsByUserId(user.Id);

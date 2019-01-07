@@ -31,7 +31,7 @@ namespace PayFlex.Identity.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Create([FromBody] RoleDto role) =>
-           Ok(await this._roleAppServ.AddRole(role));
+           Ok(await this._roleAppServ.AddRoleAsync(role));
 
         [Route("api/v1/Identity/Role/{id}")]
         [HttpGet]
@@ -50,9 +50,18 @@ namespace PayFlex.Identity.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Update([FromBody] RoleDto role)
         {
-            await this._roleAppServ.UpdateRole(role);
+            await this._roleAppServ.UpdateRoleAsync(role);
             return Ok(true);
         }
-        
+
+        [Route("api/v1/Identity/Role/{id}")]
+        [HttpDelete]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Delete([FromRoute]int id)
+        {
+            await this._roleAppServ.DeleteRoleAsync(id);
+            return Ok(true);
+        }
+
     }
 }

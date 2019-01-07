@@ -48,6 +48,15 @@ namespace PayFlex.Identity.API.Controllers
              await this._permissionAppServ.UpdatePermissionAsync(permission);
             return Ok(true);
         }
-            
+
+        [Route("api/v1/Identity/Permission/{id}")]
+        [HttpDelete]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Delete([FromRoute]int id)
+        {
+            await this._permissionAppServ.DeletePermissionAsync(id);
+            return Ok(true);
+        }
+
     }
 }

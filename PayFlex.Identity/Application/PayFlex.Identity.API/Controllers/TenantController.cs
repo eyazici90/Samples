@@ -39,7 +39,7 @@ namespace PayFlex.Identity.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Create([FromBody] TenantDto tenant)
         {
-            await this._tenantAppServ.AddTenant(tenant);
+            await this._tenantAppServ.AddTenantAsync(tenant);
             return Ok(true);
         }
 
@@ -48,7 +48,7 @@ namespace PayFlex.Identity.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Update([FromBody] TenantDto tenant)
         {
-            await this._tenantAppServ.UpdateTenant(tenant);
+            await this._tenantAppServ.UpdateTenantAsync(tenant);
             return Ok(true);
         }
     }

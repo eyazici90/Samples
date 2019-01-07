@@ -30,7 +30,13 @@ namespace PayFlex.Identity.Application.Services
 
         public async Task DeletePermissionAsync(int permissionId)
         {
-            await DeleteAsync(permissionId);
+            // Hard Delete
+            //await DeleteAsync(permissionId);
+
+            //Soft Delete
+            await UpdateAsync(permissionId, async (permission) => {
+                permission.DeleteThisPermission();
+            });
         }
 
         public  async Task<IEnumerable<PermissionDto>> GetAllPermissionsAsync()
