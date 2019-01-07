@@ -53,7 +53,10 @@ namespace PayFlex.Identity.API.Controllers
             {
                 var user = await this._userAppService.FindByUsername(credentials.Username);
                 _claimList.Add(new Claim(ClaimTypes.UserData, user.Id.ToString()));
-                _claimList.Add(new Claim(nameof(IMultiTenant.TenantId), user.TenantId.ToString()));
+
+                if (user.TenantId.HasValue)
+                    _claimList.Add(new Claim(nameof(IMultiTenant.TenantId), user.TenantId.ToString()));
+
             }
             return _claimList; ;
         }

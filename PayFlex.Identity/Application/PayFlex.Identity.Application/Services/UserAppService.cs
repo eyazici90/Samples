@@ -26,7 +26,7 @@ namespace PayFlex.Identity.Application.Services
         public async Task<UserDto> AddUser(UserDto userDto)
         {
             return await AddAsync(async () => {
-                var user = User.Create(userDto.UserName, userDto.TenantId);
+                var user = User.Create(userDto.UserName, userDto.TenantId.Value);
                 return user;
             });
         }
