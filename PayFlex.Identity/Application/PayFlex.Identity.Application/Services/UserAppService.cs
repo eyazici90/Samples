@@ -15,20 +15,20 @@ using System.Threading.Tasks;
 namespace PayFlex.Identity.Application.Services
 {
     public class UserAppService : CrudAppServiceAsync<UserDto, int, User>, IUserAppService
-    {
-        private readonly IRepositoryAsync<User, int> _userRep;
+    { 
+        private readonly IUserRepository _userRep; 
         public UserAppService(IRepositoryAsync<User, int> repositoryAsync
-            , IObjectMapper objectMapper) : base(repositoryAsync, objectMapper)
+            , IObjectMapper objectMapper
+            , IUserRepository userRep) : base(repositoryAsync, objectMapper)
         {
-            _userRep = repositoryAsync;
+            _userRep = userRep; 
         }
 
         public async Task<UserDto> AddUser(UserDto userDto)
         {
-            return await AddAsync(async () => {
-                var user = User.Create(userDto.UserName, userDto.TenantId.Value);
-                return user;
-            });
+            var user = User.Create(userDto.UserName, userDto.Email, userDto.TenantId.Value);
+            var createdUser = await this._userRep.CreateUserAsync(user, "123456.");
+            return this._objectMapper.MapTo<UserDto>(createdUser);
         }
 
         public async Task AssignPermissionToUser(UserDto userDto, int permissionId)
@@ -59,9 +59,10 @@ namespace PayFlex.Identity.Application.Services
 
         public async Task<UserDto> FindByUsername(string userName)
         {
-           return  await QueryableNoTrack()
-                .Where(u=> u.UserName == userName).FirstOrDefaultAsync();
-        }
+           return  await QueryableNoTrack() 
+                .Where(u=> u.UserName == userName)
+                .SingleOrDefaultAsync();
+        }  
 
         public async Task<List<UserDto>> GetAllUsersAsync()
         {
@@ -73,10 +74,20 @@ namespace PayFlex.Identity.Application.Services
             return await FindAsync(userId);
         }
 
+        public  async Task<IEnumerable<UserAssignedToTenantDto>>  GetUserTenantsByUserId(int userId) =>
+          await _objectMapper.MapTo<UserAssignedToTenantDto>(
+                 _userRep.GetUserTenantsByUserId(userId)
+             )
+            .ToListAsync(); 
+
         public async Task UpdateUserAsync(UserDto userDto)
         {
             await UpdateAsync(userDto.Id, async user => {
-               // User updates 
+
+                user.ChangeUserName(userDto.UserName);
+                user.ChangeEmail(userDto.Email);
+                user.ChangePhoneNumber(string.Empty);
+
             });
         }
 

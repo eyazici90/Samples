@@ -40,11 +40,48 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
             TenantId = tenantId;
         }
 
+        private User(string userName, string email, int tenantId) : this()
+        {
+            this.UserName = !string.IsNullOrWhiteSpace(userName) ? userName
+                                                                 : throw new ArgumentNullException(nameof(userName));
+
+            this.Email = !string.IsNullOrWhiteSpace(email) ? email
+                                                                 : throw new ArgumentNullException(nameof(email));
+
+            if (tenantId < 0)
+                throw new IdentityDomainException($"Invalid Tenant Id : {tenantId}");
+
+            TenantId = tenantId;
+        }
+
         public static User Create(string userName, int tenantId)
         {
             return new User(userName, tenantId);
         }
 
+        public static User Create(string userName, string email, int tenantId)
+        {
+            return new User(userName, email, tenantId);
+        }
+
+        public void ChangeUserName(string userName)
+        {
+            this.UserName = !string.IsNullOrWhiteSpace(userName) ? userName
+                                                                           : throw new ArgumentNullException(nameof(userName));
+            ApplyEvent(new UserNameChangedDomainEvent(this));
+        }
+
+        public void ChangeEmail(string email)
+        {
+            this.Email = !string.IsNullOrWhiteSpace(email) ? email : Email;
+            ApplyEvent(new UserEmailChangedDomainEvent(this));
+        }
+
+        public void ChangePhoneNumber(string phoneNumber)
+        {
+            this.PhoneNumber = !string.IsNullOrWhiteSpace(phoneNumber) ? phoneNumber : PhoneNumber; 
+        }
+         
         public void AssignRole(int roleId)
         {
             if (roleId < 0)

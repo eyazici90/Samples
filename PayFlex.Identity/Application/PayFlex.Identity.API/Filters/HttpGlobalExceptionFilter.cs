@@ -21,12 +21,12 @@ namespace PayFlex.Identity.API.Filters
         {
             if (context.Exception.GetType() == typeof(Exception))
             {
-                context.Result = new OkObjectResult(context.Exception.Message);
+                context.Result = new OkObjectResult(context.Exception.Message + "\r\n" + context.Exception.StackTrace );
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             }
             else
             {
-                context.Result = new OkObjectResult(context.Exception.Message);
+                context.Result = new OkObjectResult(context.Exception.Message + "\r\n" + context.Exception.StackTrace);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
             context.ExceptionHandled = true;

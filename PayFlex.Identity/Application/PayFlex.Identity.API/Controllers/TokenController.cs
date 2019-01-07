@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PayFlex.Identity.API.Extensions;
 using PayFlex.Identity.Application.Contracts.Services;
+using PayFlex.Identity.Shared;
 using PayFlex.Identity.Shared.Dtos.User;
 using PayFlex.Identity.Shared.Requests;
 using PayFlex.Identity.Shared.Responses;
@@ -54,8 +55,10 @@ namespace PayFlex.Identity.API.Controllers
                 var user = await this._userAppService.FindByUsername(credentials.Username);
                 _claimList.Add(new Claim(ClaimTypes.UserData, user.Id.ToString()));
 
-                if (user.TenantId.HasValue)
-                    _claimList.Add(new Claim(nameof(IMultiTenant.TenantId), user.TenantId.ToString()));
+                var userTenants = await this._userAppService.GetUserTenantsByUserId(user.Id);
+
+                if (userTenants.Any())
+                    _claimList.Add(new Claim(nameof(IMultiTenant.TenantId), userTenants.FirstOrDefault().TenantId.ToString()));
 
             }
             return _claimList; ;
@@ -81,7 +84,7 @@ namespace PayFlex.Identity.API.Controllers
 
 
             var token = new JwtSecurityToken(
-                new JwtHeader(new SigningCredentials(SecurityKeyExtension.GetSigningKey("IdentityAPIseckey2017!.#")
+                new JwtHeader(new SigningCredentials(SecurityKeyExtension.GetSigningKey(Settings.API_SECRET)
                                             , SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 

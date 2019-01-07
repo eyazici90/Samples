@@ -27,6 +27,8 @@ namespace PayFlex.Identity.Application.Contracts.Services
 
         Task<List<UserDto>> GetAllUsersAsync();
 
+        Task<IEnumerable<UserAssignedToTenantDto>> GetUserTenantsByUserId(int userId);
+
         [EnableUnitOfWork]
         Task<UserDto> AddUser(UserDto user);
 

@@ -40,6 +40,7 @@ using PayFlex.Identity.Domain.AggregatesModel.RoleAggregate;
 using PayFlex.Identity.Domain.AggregatesModel.UserAggregate;
 using PayFlex.Identity.EFRepositories.UserAggregate;
 using PayFlex.Identity.Infrastructure;
+using PayFlex.Identity.Shared;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace PayFlex.Identity.API
@@ -145,7 +146,7 @@ namespace PayFlex.Identity.API
                                  ValidateIssuerSigningKey = true,
                                  ValidIssuer = string.Empty,
                                  ValidAudience = "",
-                                 IssuerSigningKey = SecurityKeyExtension.GetSigningKey("IdentityAPIseckey2017!.#")
+                                 IssuerSigningKey = SecurityKeyExtension.GetSigningKey(Settings.API_SECRET)
                              };
                     });
 

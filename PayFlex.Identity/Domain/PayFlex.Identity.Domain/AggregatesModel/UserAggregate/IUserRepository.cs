@@ -16,10 +16,12 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
         Task<User> GetUserAggregateById(int userId);
 
         Task<IEnumerable<UserAssignedToRole>> UserAssignedToRolesByUserId(int userId);
-        Task<IList<UserAssignedToPermission>> GetAllUserPermissions();
+        Task<IList<UserAssignedToPermission>> GetAllUserPermissions(); 
+
+        IQueryable<UserAssignedToTenant> GetUserTenantsByUserId(int userId);
 
         Task<User> GetUserAsync(ClaimsPrincipal user);
-        Task<bool> CreateUserAsync(User user, string password);
+        Task<User> CreateUserAsync(User user, string password);
         Task<bool> AddToRoleAsync(User user, string roleName);
         Task<bool> ChangePassword(User user, string currentPassword, string newPassword);
 

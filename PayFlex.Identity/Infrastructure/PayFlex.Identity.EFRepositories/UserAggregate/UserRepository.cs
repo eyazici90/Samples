@@ -42,6 +42,11 @@ namespace PayFlex.Identity.EFRepositories.UserAggregate
                 .SelectMany(u => u.UserRoles.Where(r => r.UserId == userId))
                 .ToListAsync();
 
+        public IQueryable<UserAssignedToTenant> GetUserTenantsByUserId(int userId) =>
+            _userRep.Queryable()
+                   .SelectMany(t => t.UserTenants)
+                   .Where(u => u.Id == userId);
+
         public async Task<User> FindByUsername(string user) =>
             await this._userRep.QueryableWithNoFilter()
                 .SingleOrDefaultAsync(u => u.UserName == user.Trim());
@@ -50,9 +55,10 @@ namespace PayFlex.Identity.EFRepositories.UserAggregate
             await _userManager.CheckPasswordAsync(user, password);
 
 
-        public async Task<bool> CreateUserAsync(User user, string password)
-        {
-            return (await _userManager.CreateAsync(user, password)).Succeeded;
+        public async Task<User> CreateUserAsync(User user, string password)
+        { 
+            await _userManager.CreateAsync(user, password);
+            return user;
         }
 
         public async Task<bool> AddToRoleAsync(User user, string roleName) =>
@@ -92,6 +98,7 @@ namespace PayFlex.Identity.EFRepositories.UserAggregate
             await this._userRep.QueryableNoTrack()
                 .SelectMany(p => p.UserPermissions)
                 .ToListAsync();
-       
+
+        
     }
 }
