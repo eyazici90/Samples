@@ -7,8 +7,7 @@ using System.Text;
 namespace PayFlex.Identity.Domain.AggregatesModel.PermissionAggregate
 {
     public sealed class Permission : FullyAuditAggregateRootEntity
-    {
-        public int Id { get; private set; }
+    { 
         public int? ParentId { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }

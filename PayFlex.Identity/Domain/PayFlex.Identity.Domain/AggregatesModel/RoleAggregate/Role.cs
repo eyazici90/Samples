@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PayFlex.Identity.Domain.AggregatesModel.RoleAggregate
 {
-    public sealed class Role : FullyAuditIdentityRoleEntity, IAggregateRoot
+    public sealed class Role : FullyAuditIdentityRoleEntity<int>, IAggregateRoot
     {
         private Role() : base()
         {
