@@ -35,26 +35,23 @@ namespace PayFlex.Identity.Domain.AggregatesModel.PermissionAggregate
             return new Permission(name);
         }
 
-        public Permission ChangeName(string name)
+        public void ChangeName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new IdentityDomainException($"Invalid Permission Name: {name}");
-            this.Name = name;
-            return this;
+            this.Name = name; 
         }
 
-        public Permission ChangeOrSetDesciption(string desc)
+        public void ChangeOrSetDesciption(string desc)
         { 
-            this.Description = desc;
-            return this;
+            this.Description = desc; 
         }
 
-        public Permission ChangeOrSetUrl(string url)
+        public void ChangeOrSetUrl(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
                 throw new IdentityDomainException($"Invalid Permission Url: {url}");
-            this.Url = url;
-            return this;
+            this.Url = url; 
         }
 
         public void DeleteThisPermission()

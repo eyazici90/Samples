@@ -30,9 +30,12 @@ namespace PayFlex.Identity.API.Filters
             {
                 await next();
                 return;
-            } 
+            }
 
-            if ((context.Result as ObjectResult).StatusCode.HasValue 
+            if (context.Result is EmptyResult)
+                PerformEmptyResultResult(context);
+
+            else if ((context.Result as ObjectResult).StatusCode.HasValue 
                 && (context.Result as ObjectResult).StatusCode.Value.ToString().StartsWith("2") == false )
                 PerformErrorResult(context);
             
@@ -41,7 +44,22 @@ namespace PayFlex.Identity.API.Filters
             
 
             var executedContext = await next();
-        } 
+        }
+
+
+        private void PerformEmptyResultResult(ResultExecutingContext context)
+        {
+            var successResponse = new HttpApiResultResponse
+            {
+                Success = true,
+                Result = null
+            };
+
+            context.Result = new OkObjectResult(successResponse);
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+
+        }
+
 
         private void PerformSuccesfullResult(ResultExecutingContext context)
         {

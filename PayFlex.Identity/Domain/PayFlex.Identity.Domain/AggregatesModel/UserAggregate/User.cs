@@ -88,7 +88,7 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
                 throw new IdentityDomainException($"Invalid RoleId : {roleId}");
             var userRole = UserAssignedToRole.Create(this.Id, roleId);
             this._userRoles.Add(userRole);
-            ApplyEvent(new PermissionAssignedToUserDomainEvent(this));
+            ApplyEvent(new RoleAssignedToUserDomainEvent(this));
         }
 
         public void AssignPermission(int permissionId)

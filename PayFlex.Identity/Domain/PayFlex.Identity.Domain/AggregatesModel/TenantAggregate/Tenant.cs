@@ -29,20 +29,16 @@ namespace PayFlex.Identity.Domain.AggregatesModel.TenantAggregate
             return new Tenant(name, desc);
         }
 
-        public Tenant ChangeName(string name)
-        {
-            if (!string.IsNullOrWhiteSpace(name))
-                this.Name = name;
-
-            return this;
+        public void ChangeName(string name)
+        { 
+            this.Name = !string.IsNullOrWhiteSpace(name) ? name
+                                                               : throw new ArgumentNullException(nameof(name));
         }
 
-        public Tenant ChangeOrAddDesc(string desc)
-        {
-            if (!string.IsNullOrWhiteSpace(desc))
-                this.Description = desc;
-
-            return this;
+        public void ChangeOrAddDesc(string desc)
+        { 
+            this.Description = !string.IsNullOrWhiteSpace(desc) ? desc
+                                                               : throw new ArgumentNullException(nameof(desc));
         }
 
         
