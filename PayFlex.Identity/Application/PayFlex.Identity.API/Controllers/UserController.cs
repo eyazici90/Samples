@@ -38,8 +38,7 @@ namespace PayFlex.Identity.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IEnumerable<UserDto>> GetAllUsers() =>
                await this._userAppServ.GetAllUsersAsync();
-
-        [AllowAnonymous]
+         
         [Route("api/v1/Identity/User")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]

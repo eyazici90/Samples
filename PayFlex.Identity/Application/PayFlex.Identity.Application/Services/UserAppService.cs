@@ -2,6 +2,7 @@
 using Galaxy.ObjectMapping;
 using Galaxy.Repositories;
 using Galaxy.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PayFlex.Identity.Application.Contracts.Services;
 using PayFlex.Identity.Domain.AggregatesModel.UserAggregate;
@@ -16,18 +17,29 @@ namespace PayFlex.Identity.Application.Services
 {
     public class UserAppService : CrudAppServiceAsync<UserDto, int, User>, IUserAppService
     { 
-        private readonly IUserRepository _userRep; 
+        private readonly IUserRepository _userRep;
+        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         public UserAppService(IRepositoryAsync<User, int> repositoryAsync
             , IObjectMapper objectMapper
-            , IUserRepository userRep) : base(repositoryAsync, objectMapper)
+            , IUserRepository userRep
+            , IPasswordHasher<User> passwordHasher
+            , UserManager<User> userManager
+            , SignInManager<User> signInManager) : base(repositoryAsync, objectMapper)
         {
-            _userRep = userRep; 
+            _userRep = userRep;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _passwordHasher = passwordHasher;
         }
          
         public async Task<UserDto> AddUserAsync(UserDto userDto)
         {
             var user = User.Create(userDto.UserName, userDto.Email, userDto.TenantId.Value);
-            var createdUser = await this._userRep.CreateUserAsync(user, "123456.");
+            var hashedPassword = _passwordHasher.HashPassword(user, "123456.");
+            user.ChangePassword(hashedPassword);
+            var createdUser = await this._userRep.CreateUserAsync(user);
             return this._objectMapper.MapTo<UserDto>(createdUser);
         }
 
@@ -96,14 +108,20 @@ namespace PayFlex.Identity.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task ValidateCredentials(UserDto user, string password)
+        public async Task<bool> ValidateCredentials(UserDto userDto, string password)
         {
-            
+            var user = await this._userManager.FindByIdAsync(userDto.Id.ToString());
+            var result = await _userManager.CheckPasswordAsync(user, password);
+            return result;
         }
 
-        public async Task<UserDto> ValidateCredentialsByUserName(UserCredantialsDto credentials)
+        public async Task<bool> ValidateCredentialsByUserName(UserCredantialsDto credentials)
         {
-            return new UserDto() ;
+             var user = await this._userRep.FindByUsername(credentials.Username);
+             if (user == null)
+                throw new ArgumentNullException(nameof(user));
+             var result = await _userManager.CheckPasswordAsync(user,credentials.Password);
+             return result;
         }
     }
 }

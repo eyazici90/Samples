@@ -7,11 +7,12 @@ using System.Text;
 
 namespace PayFlex.Identity.Domain.AggregatesModel.RoleAggregate
 {
-    public sealed class Role : FullyAuditIdentityRoleEntity<int>, IAggregateRoot
-    {
-        private Role() : base()
-        {
+    public sealed class Role : FullyAuditIdentityRoleEntity, IAggregateRoot
+    { 
+        private Role()  
+        { 
         }
+
         private Role(string roleName) : this()
         {
             this.Name = !string.IsNullOrWhiteSpace(roleName) ? roleName

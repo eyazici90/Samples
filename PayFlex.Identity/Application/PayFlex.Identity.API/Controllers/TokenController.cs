@@ -48,7 +48,7 @@ namespace PayFlex.Identity.API.Controllers
         {
             IList<Claim> _claimList = new List<Claim>();
             var validUser = await _userAppService.ValidateCredentialsByUserName(credentials);
-            if (validUser != null)
+            if (validUser)
             {
                 var user = await this._userAppService.FindByUsernameAsync(credentials.Username);
                 _claimList.Add(new Claim(ClaimTypes.UserData, user.Id.ToString()));
@@ -59,7 +59,7 @@ namespace PayFlex.Identity.API.Controllers
                     _claimList.Add(new Claim(nameof(IMultiTenant.TenantId), userTenants.FirstOrDefault().TenantId.ToString()));
 
             }
-            return _claimList; ;
+            return _claimList; 
         }
 
 

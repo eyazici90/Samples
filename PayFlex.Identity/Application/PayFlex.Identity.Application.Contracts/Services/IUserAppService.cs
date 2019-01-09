@@ -38,8 +38,8 @@ namespace PayFlex.Identity.Application.Contracts.Services
         [EnableUnitOfWork]
         Task UpdateUserAsync(UserDto user);
 
-        Task ValidateCredentials(UserDto user, string password);
+        Task<bool> ValidateCredentials(UserDto user, string password);
 
-        Task<UserDto> ValidateCredentialsByUserName(UserCredantialsDto credentials);
+        Task<bool> ValidateCredentialsByUserName(UserCredantialsDto credentials);
     }
 }

@@ -12,33 +12,22 @@ using System.Threading.Tasks;
 namespace PayFlex.Identity.EFRepositories.RoleAggregate
 {
     public class RoleRepository : IRoleRepository
-    {
-        private readonly UserManager<User> _userServ;
-        private readonly RoleManager<Role> _roleServ;
+    { 
         private readonly IRepositoryAsync<Role> _roleRep;
         private readonly IRepositoryAsync<User> _userRep;
-        public RoleRepository(UserManager<User> userServ
-            , RoleManager<Role> roleServ
-            , IRepositoryAsync<Role> roleRep
+        public RoleRepository(IRepositoryAsync<Role> roleRep
             , IRepositoryAsync<User> userRep)
-        {
-            this._userServ = userServ ?? throw new ArgumentNullException(nameof(userServ));
-            this._roleServ = roleServ ?? throw new ArgumentNullException(nameof(roleServ));
+        { 
             this._roleRep = roleRep ?? throw new ArgumentNullException(nameof(roleRep));
             this._userRep = userRep ?? throw new ArgumentNullException(nameof(userRep));
         }
 
         public Task<Role> FindRoleById(int roleId) =>
-            this._roleServ.FindByIdAsync(roleId.ToString());
-
-        public async Task<IList<string>> FindUserRolesByName(string username)
-        {
-            var user = await this._userServ.FindByNameAsync(username);
-            return await this._userServ.GetRolesAsync(user);
-        }
+            this._roleRep.FindAsync(roleId);
+ 
 
         public IQueryable<Role> GetAllRoles() =>
-             this._roleServ.Roles;
+             this._roleRep.Queryable();
 
         public async Task<Role> GetRoleAggregateById(int roleId)
         {
@@ -53,28 +42,24 @@ namespace PayFlex.Identity.EFRepositories.RoleAggregate
                 .SelectMany(u => u.UserRoles.Where(r => r.RoleId == roleId))
                 .ToListAsync();
 
-        public async Task<IList<string>> GetRolesByUserId(int userId)
+        
+        public async Task<Role> CreateAsync(Role role)
         {
-            var user = await this._userServ.FindByIdAsync(userId.ToString());
-            return await this._userServ.GetRolesAsync(user);
-        }
-
-        public async Task<IList<string>> GetRolesByUser(User user) =>
-            await this._userServ.GetRolesAsync(user);
-
-        public async Task<bool> CreateAsync(Role role)
-        {
-            return (await this._roleServ.CreateAsync(role)).Succeeded;
+            await _roleRep.InsertAsync(role);
+            return role;
         }
 
         public async Task<bool> UpdateAsync(Role role)
         {
-            return (await this._roleServ.UpdateAsync(role)).Succeeded;
+            this._roleRep.Update(role);
+            return true;
         }
 
         public async Task<bool> DeleteAsync(Role role)
         {
-            return (await this._roleServ.DeleteAsync(role)).Succeeded;
+            return (await _roleRep.DeleteAsync(role.Id));
         }
+
+        
     }
 }

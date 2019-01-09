@@ -61,9 +61,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.NewtonSoftJson", "li
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Serilog", "libs\Galaxy.Serilog\Galaxy.Serilog.csproj", "{D7E8B8E6-E5E6-49A4-A9B4-2C6311729BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayFlex.Identity.Domain.Tests", "Tests\PayFlex.Identity.Domain.Tests\PayFlex.Identity.Domain.Tests.csproj", "{5002260C-AEED-4669-8071-82F7D593917F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlex.Identity.Domain.Tests", "Tests\PayFlex.Identity.Domain.Tests\PayFlex.Identity.Domain.Tests.csproj", "{5002260C-AEED-4669-8071-82F7D593917F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayFlex.Identity.Application.Tests", "Tests\PayFlex.Identity.Application.Tests\PayFlex.Identity.Application.Tests.csproj", "{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlex.Identity.Application.Tests", "Tests\PayFlex.Identity.Application.Tests\PayFlex.Identity.Application.Tests.csproj", "{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

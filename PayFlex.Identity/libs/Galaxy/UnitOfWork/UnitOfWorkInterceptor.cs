@@ -70,10 +70,10 @@ namespace Galaxy.UnitOfWork
             {
                 invocation.Proceed();
             }
-            catch (Exception ex)
+            catch 
             {
                 _unitOfWorkAsync.Dispose();
-                throw ex;
+                throw;
             } 
             this._unitOfWorkAsync.Commit();
         }
@@ -85,10 +85,10 @@ namespace Galaxy.UnitOfWork
             {
                 invocation.Proceed();
             }
-            catch (Exception ex)
+            catch
             {
                 _unitOfWorkAsync.Dispose();
-                throw ex;
+                throw;
             }
 
             if (invocation.Method.ReturnType == typeof(Task))
@@ -122,9 +122,7 @@ namespace Galaxy.UnitOfWork
             if (attrs.Length > 0)
             {
                 return attrs[0];
-            }
-             
-
+            } 
             return null;
         }
 

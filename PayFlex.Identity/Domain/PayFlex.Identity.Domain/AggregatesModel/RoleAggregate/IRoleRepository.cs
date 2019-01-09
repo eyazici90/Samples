@@ -13,11 +13,9 @@ namespace PayFlex.Identity.Domain.AggregatesModel.RoleAggregate
         Task<Role> GetRoleAggregateById(int roleId);
 
         Task<Role> FindRoleById(int roleId);
-        IQueryable<Role> GetAllRoles();
-        Task<IList<string>> GetRolesByUserId(int userId);
-        Task<IList<string>> GetRolesByUser(User user);
+        IQueryable<Role> GetAllRoles(); 
         Task<IEnumerable<UserAssignedToRole>> GetUserAssignedToRoleByRoleId(int roleId);
-        Task<bool> CreateAsync(Role role);
+        Task<Role> CreateAsync(Role role);
         Task<bool> UpdateAsync(Role role);
         Task<bool> DeleteAsync(Role role);
     }

@@ -109,5 +109,11 @@ namespace PayFlex.Identity.Domain.AggregatesModel.UserAggregate
             ApplyEvent(new TenantAssignedToUserDomainEvent(this));
         }
 
+        public void ChangePassword(string passWord)
+        {
+            if (string.IsNullOrEmpty(passWord))
+                throw new IdentityDomainException($"Invalid Password : {passWord}");
+            PasswordHash = passWord;
+        }
     }
 }
