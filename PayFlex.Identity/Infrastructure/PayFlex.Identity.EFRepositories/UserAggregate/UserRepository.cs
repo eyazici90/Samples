@@ -14,7 +14,7 @@ namespace PayFlex.Identity.EFRepositories.UserAggregate
     public class UserRepository : IUserRepository
     {
         private readonly IRepositoryAsync<User> _userRep; 
-        public UserRepository(  IRepositoryAsync<User> userRep )
+        public UserRepository(IRepositoryAsync<User> userRep )
         { 
             this._userRep = userRep ?? throw new ArgumentNullException(nameof(userRep)); 
         }

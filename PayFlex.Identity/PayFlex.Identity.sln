@@ -65,6 +65,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlex.Identity.Domain.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayFlex.Identity.Application.Tests", "Tests\PayFlex.Identity.Application.Tests\PayFlex.Identity.Application.Tests.csproj", "{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayFlex.Identity.TestBase", "Tests\PayFlex.Identity.TestBase\PayFlex.Identity.TestBase.csproj", "{26D60233-8DE4-4B2C-A648-766B1DC65B31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,10 @@ Global
 		{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D60233-8DE4-4B2C-A648-766B1DC65B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D60233-8DE4-4B2C-A648-766B1DC65B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D60233-8DE4-4B2C-A648-766B1DC65B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D60233-8DE4-4B2C-A648-766B1DC65B31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +183,7 @@ Global
 		{D7E8B8E6-E5E6-49A4-A9B4-2C6311729BC4} = {54B9CC71-966D-411D-B8D2-9F45A48743FF}
 		{5002260C-AEED-4669-8071-82F7D593917F} = {1CA2BC4C-8DE7-4D12-AB9C-6390F62AC07D}
 		{EE0C0AC6-8FCB-4517-BA20-CA8BC86780D3} = {1CA2BC4C-8DE7-4D12-AB9C-6390F62AC07D}
+		{26D60233-8DE4-4B2C-A648-766B1DC65B31} = {1CA2BC4C-8DE7-4D12-AB9C-6390F62AC07D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AEE6C63-4788-4E92-92DC-66EC7A6A5233}

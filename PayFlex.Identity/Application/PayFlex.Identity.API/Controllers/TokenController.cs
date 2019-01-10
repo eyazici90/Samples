@@ -32,6 +32,7 @@ namespace PayFlex.Identity.API.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<GetTokenResponse> Post([FromBody] GetTokenRequest request)
         {
             var claimList = (await IsValid(new UserCredantialsDto { Username = request.Username, Password = request.Password }));
