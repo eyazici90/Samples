@@ -105,6 +105,18 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
             user.Email.Should().Be(newEmail);
         }
 
+        [Fact]
+        public void Change_existing_user_phone_number_success()
+        {
+            var newPhoneNumber = "55555555";
+
+            var user = fakeUser;
+
+            user.ChangePhoneNumber(newPhoneNumber);
+
+            user.PhoneNumber.Should().Be(newPhoneNumber);
+        }
+
 
         [Fact]
         public void Change_existing_user_userName_trigger_userNameChangedDomainEvent_success()
@@ -117,6 +129,8 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
 
             user.DomainEvents.Should().ContainItemsAssignableTo<UserNameChangedDomainEvent>();
         }
+
+
 
         [Fact]
         public void Change_existing_user_email_trigger_userEmailChangedDomainEvent_success()

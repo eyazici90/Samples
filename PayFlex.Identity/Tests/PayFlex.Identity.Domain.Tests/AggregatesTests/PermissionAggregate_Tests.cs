@@ -41,6 +41,20 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
             createdNewPermission.Should().NotBeNull();
         }
 
+        [Fact]
+        public void Delete_existing_permission_aggregateroot_success()
+        {
+            var fakeName = "admin";
+
+            var createdNewPermission = Permission.Create(fakeName);
+
+            createdNewPermission.Should().NotBeNull();
+
+            createdNewPermission.DeleteThisPermission();
+
+            createdNewPermission.IsDeleted.Should().BeTrue();
+        }
+
 
         [Fact]
         public void Change_existing_permission_name_success()
@@ -54,6 +68,7 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
             permission.Name.Should().Be(newPermissionName);
         }
 
+
         [Fact]
         public void Change_existing_permission_name_fail()
         {
@@ -63,7 +78,19 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
 
             act.Should().Throw<IdentityDomainException>();
         }
-         
+
+        [Fact]
+        public void Change_existing_permission_description_success()
+        {
+            var newFakePermissionDesc = "fasdadasdqwds";
+
+            var permission = fakePermission;
+
+            permission.ChangeOrSetDesciption(newFakePermissionDesc);
+
+            permission.Description.Should().Be(newFakePermissionDesc);
+        }
+
 
         private Permission fakePermission => Permission.Create(fakePermissionName);
 

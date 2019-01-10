@@ -40,6 +40,18 @@ namespace PayFlex.Identity.Domain.Tests.AggregatesTests
             createdNewRole.Should().NotBeNull();
         }
 
+        [Fact]
+        public void Delete_existing_role_aggregateroot_success()
+        {
+            var fakeName = "default";
+
+            var createdNewRole = Role.Create(fakeName);
+
+            createdNewRole.DeleteThisRole();
+
+            createdNewRole.IsDeleted.Should().BeTrue();
+        }
+
 
         [Fact]
         public void Change_existing_role_name_success()

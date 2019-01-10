@@ -27,7 +27,7 @@ namespace PayFlex.Identity.Application.Tests.ApplicationServices
         {
             var fakeUser = new UserDto
             {
-                UserName = "emre.yazici",
+                UserName = "leman.yazici",
                 Email = "emre.yazici@gmail.com",
                 TenantId = 1
             };
