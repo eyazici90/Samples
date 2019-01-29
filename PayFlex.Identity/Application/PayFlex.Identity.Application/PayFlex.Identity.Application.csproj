@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Optional" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\PayFlex.Identity.Infrastructure\PayFlex.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.Cache\Galaxy.Cache.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.EntityFrameworkCore\Galaxy.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.FluentValidation\Galaxy.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.Identity\Galaxy.Identity.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.Mapster\Galaxy.Mapster.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.NewtonSoftJson\Galaxy.NewtonSoftJson.csproj" />
+    <ProjectReference Include="..\..\libs\Galaxy.Serilog\Galaxy.Serilog.csproj" />
+    <ProjectReference Include="..\PayFlex.Identity.Application.Contracts\PayFlex.Identity.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
